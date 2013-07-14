@@ -5,4 +5,6 @@ class Tournament < ActiveRecord::Base
   has_many  :participants
   has_many  :teams, through: :participants
   has_many  :matchdays
+
+  validates :name, :organizer, :number_of_matchdays, :sport, :competition_style, :season, presence: true
 end

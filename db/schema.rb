@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
   end
 
   create_table "matches", :force => true do |t|
+    t.integer  "matchday_id"
     t.integer  "home_team_id"
     t.integer  "away_team_id"
     t.date     "match_date"
@@ -50,7 +51,9 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
     t.integer  "home_score"
     t.integer  "away_score"
     t.integer  "leg"
-    t.float    "odds"
+    t.float    "home_odds"
+    t.float    "draw_odds"
+    t.float    "away_odds"
     t.string   "venue"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
 
   create_table "picks", :force => true do |t|
     t.integer  "competitor_id"
-    t.integer  "matchday_id"
+    t.integer  "match_id"
     t.integer  "selected_result"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false

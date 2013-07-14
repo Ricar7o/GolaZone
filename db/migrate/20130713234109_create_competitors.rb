@@ -1,4 +1,5 @@
 class CreateCompetitors < ActiveRecord::Migration
+  
   def change
     create_table :competitors do |t|
 
@@ -7,5 +8,8 @@ class CreateCompetitors < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :competitors, [:user, :campaign], :unique => true
   end
+
 end

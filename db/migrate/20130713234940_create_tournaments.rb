@@ -1,4 +1,5 @@
 class CreateTournaments < ActiveRecord::Migration
+  
   def change
     create_table :tournaments do |t|
       t.string      :name
@@ -9,5 +10,8 @@ class CreateTournaments < ActiveRecord::Migration
       t.string      :season
       t.timestamps
     end
+
+    add_index :tournaments, [:name, :sport, :season], unique: true
   end
+
 end
