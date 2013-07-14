@@ -2,12 +2,12 @@ class CreateParticipants < ActiveRecord::Migration
   
   def change
     create_table :participants do |t|
-      t.belongs_to  :tournament
-      t.belongs_to  :team
+      t.references  :tournament
+      t.references  :team
       t.timestamps
     end
 
-    add_index :participants, [:tournament, :team], :unique => true
+    add_index :participants, [:tournament_id, :team_id], :unique => true
   end
 
 end

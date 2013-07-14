@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many  :campaigns, through: :competitors
 
   validates :email, :first_name, :last_name, :username, presence: true
+  validates :username, :format => { :with => /^[0-9a-zA-Z]*$/, on: :create }
+  validates :username, uniqueness: true
 
   def full_name
     return first_name + " " + last_name

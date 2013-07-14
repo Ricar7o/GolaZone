@@ -9,7 +9,7 @@ class CreateCompetitors < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :competitors, [:user, :campaign], :unique => true
+    add_index :competitors, [:user_id, :campaign_id], :unique => true
   end
 
 end

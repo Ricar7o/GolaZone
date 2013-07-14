@@ -8,7 +8,7 @@ class CreatePicks < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :picks, [:competitor, :match], unique: true
+    add_index :picks, [:competitor_id, :match_id], unique: true
   end
 
 end

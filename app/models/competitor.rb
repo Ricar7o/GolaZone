@@ -6,5 +6,6 @@ class Competitor < ActiveRecord::Base
   has_many    :picks
 
   validates   :user, :campaign, presence: true
+  validates   :user, uniqueness: { scope: :campaign_id }
   
 end

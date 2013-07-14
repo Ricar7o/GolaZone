@@ -4,13 +4,13 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.string      :name
       t.string      :home_field
-      t.string      :form
-      t.text        :additional_data
+      t.string      :shape
+      t.string      :sport
       
       t.timestamps
     end
 
-    add_index :teams, :name, unique: true
+    add_index :teams, [:name, :sport], unique: true
   end
 
 end

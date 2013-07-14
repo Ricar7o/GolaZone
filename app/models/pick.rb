@@ -5,4 +5,5 @@ class Pick < ActiveRecord::Base
   belongs_to  :match
 
   validates :competitor, :match, :selected_result, presence: true
+  validates :competitor, uniqueness: { scope: :match_id }
 end

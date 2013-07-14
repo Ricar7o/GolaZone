@@ -5,8 +5,7 @@ class CreateMatches < ActiveRecord::Migration
       t.references  :matchday
       t.references  :home_team
       t.references  :away_team
-      t.date        :match_date
-      t.time        :match_time
+      t.datetime    :match_time
       t.integer     :home_score
       t.integer     :away_score
       t.integer     :leg
@@ -18,7 +17,7 @@ class CreateMatches < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :matches, [:home_team, :away_team, :date], unique: true
+    add_index :matches, [:home_team_id, :away_team_id, :match_time], unique: true
   end
 
 end

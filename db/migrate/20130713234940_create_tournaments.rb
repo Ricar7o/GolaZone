@@ -8,6 +8,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.string      :sport
       t.string      :competition_style
       t.string      :season
+      t.string      :country
       t.timestamps
     end
 
