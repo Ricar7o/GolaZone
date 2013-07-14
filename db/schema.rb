@@ -11,7 +11,85 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713212546) do
+ActiveRecord::Schema.define(:version => 20130714004653) do
+
+  create_table "campaigns", :force => true do |t|
+    t.string   "name"
+    t.boolean  "published"
+    t.integer  "tournament_id"
+    t.integer  "number_of_matchdays"
+    t.integer  "win_points"
+    t.integer  "lose_points"
+    t.integer  "draw_points"
+    t.string   "contest_type"
+    t.integer  "person_limit"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "competitors", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "matchdays", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "match_id"
+    t.integer  "week_number"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "matches", :force => true do |t|
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.date     "match_date"
+    t.time     "match_time"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.integer  "leg"
+    t.float    "odds"
+    t.string   "venue"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "participants", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "team_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "picks", :force => true do |t|
+    t.integer  "competitor_id"
+    t.integer  "matchday_id"
+    t.integer  "selected_result"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.string   "home_field"
+    t.string   "form"
+    t.text     "additional_data"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "tournaments", :force => true do |t|
+    t.string   "name"
+    t.string   "organizer"
+    t.integer  "number_of_matchdays"
+    t.string   "sport"
+    t.string   "competition_style"
+    t.string   "season"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
