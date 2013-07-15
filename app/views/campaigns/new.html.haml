@@ -1,0 +1,28 @@
+= form_for @campaign, html: { :class => "form-signin"} do |f|
+  - if @campaign.errors.any?
+    #error_explanation
+      %h2= pluralize(@campaign.errors.count, "error") + "prohibited this campaign from being saved:"
+      %ul
+        - @campaign.errors.full_messages.each do |msg|
+          %li= msg
+          
+  %h2.form-signin-heading Create a new campaign
+  = f.text_field :name, :autofocus => true, :class => "input-xxlarge", :placeholder => "Name of your campaign"
+  %br
+  = f.label :published, :class => "checkbox" do
+    = f.check_box :published, checked: true, :class => "checkbox"
+    = "Public"
+  %br
+
+  - tournaments_available = []
+  - @tournaments.each do |t|
+    - tournaments_available << t.name + ": " + t.season
+
+  = f.select(:tournament_id, tournaments_available, {}, { :class => "tournament_selection span4" })
+
+
+  %p.matchdays_left
+
+  %br
+  = f.submit "Submit", :class => "btn btn-large btn-primary"
+  = link_to "Cancel", pages_path, :class => "btn"
