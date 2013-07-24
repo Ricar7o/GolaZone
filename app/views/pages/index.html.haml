@@ -1,7 +1,7 @@
-
--if !current_user.present?
-  .alert
-    %button.close{type: "button", :'data-dismiss' => "alert"} &times;
-    Please log in or create an account.
--else
-  %p= "This is the pages index, " + current_user.first_name
+.row
+  -if !current_user.present?
+    .alert
+      %button.close{type: "button", :'data-dismiss' => "alert"} &times;
+      Please log in or create an account.
+  -else
+    %p= "This is the pages index, " + current_user.first_name

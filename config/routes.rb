@@ -15,6 +15,7 @@ GolaZone::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :pages
   resources :campaigns
+  post '/campaigns/new' => "campaigns#new"
 
   # Sample resource route with options:
   #   resources :products do

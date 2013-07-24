@@ -8,4 +8,13 @@ class Match < ActiveRecord::Base
 
   validates :matchday_id, :home_team_id, :away_team_id, :match_time, :venue, presence: true
   validates :home_team_id, uniqueness: { scope: [:away_team_id, :match_time] }
+
+#  after_save :update_matchday_date
+
+#  def update_matchday_date
+#    if match_time > matchday.match_time
+#      matchday.match_time = match_time
+#      matchday.save
+#    end
+#  end
 end
