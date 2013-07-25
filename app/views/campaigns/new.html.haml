@@ -1,5 +1,5 @@
 .row
-  = form_for @campaign, html: { :class => "form-signin"} do |f|
+  = form_for @campaign, html: { :class => "custom"} do |f|
     %fieldset
       %legend Create your campaign
       .row
@@ -34,18 +34,25 @@
           - @tournaments.each do |t|
             - tournaments_available << t.name + ": " + t.season
 
-          = f.select(:tournament_id, tournaments_available, {}, { id: "customDropdown", :class => "tournament_selection" })
+          = f.select(:tournament_id, tournaments_available, {}, { id: "customDropdown", :class => "medium tournament_selection" })
+      
+      .row#matchdays_for_tournament
+        - if !@tournament.nil?
+          #matchdays_recipient.small-6.medium-4.large-3.columns
+            - if @matchdays_left > 0
+              - potential_matchdays = ["Number of matchdays"]
+              - @matchdays_left.times do |i|
+                - potential_matchdays << (i+1).to_s
+              = f.select(:number_of_matchdays, potential_matchdays, {}, {id: "customDropdown2", class: "small matchdays_selection" })
+            / %input{:type => "number", :name => "matchdays", :min => "0", :max => @matchdays_left.to_s}
 
       .row
-        #chosen_tournament.small-6.medium-4.large-3.columns
-          - if !@tournament.nil?
-            / = "There are " + @matchdays_left.to_s + "matchdays left."
-            %input{:type => "number", :name => "matchdays", :min => "0", :max => @matchdays_left.to_s}
+        .columns
+          %ul.button-group
+            %li= f.submit "Submit", class: "button"
+            %li= link_to "Cancel", pages_path, :class => "button secondary"
 
-      .row
-        .small-6.medium-3.large-2.columns
-          = f.submit "Submit", :class => "btn btn-large btn-primary"
-        .small-6.medium-3.large-2.columns.left
-          = link_to "Cancel", pages_path, :class => "btn"
-
-  / # = params
+.row
+  .large-6.columns
+    %p= params
+    #debug

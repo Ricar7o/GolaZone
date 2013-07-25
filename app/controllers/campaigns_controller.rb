@@ -28,4 +28,11 @@ class CampaignsController < ApplicationController
     # render action: 'new'
   end
 
+  def get_matchdays
+    t = params["tournament"]
+    s = params["season"]
+
+    
+  end
+
 end

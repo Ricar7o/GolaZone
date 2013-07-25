@@ -1,37 +1,74 @@
-%h2= "Edit " + resource_name.to_s.humanize
+.row
+  .small-12.columns
+    %h2= "Edit " + resource_name.to_s.humanize
 
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-  = devise_error_messages!
+.row
+  .small-12.columns
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
 
-  %div
-    = f.email_field :email, :autofocus => true, :class => "input-xlarge", :placeholder => "Email"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} Email
+        .small-9.medium-6.large-4.columns.left
+          = f.email_field :email, :autofocus => true, :placeholder => "Email"
 
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div= "Currently waiting confirmation for: " + resource.unconfirmed_email
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %div= "Currently waiting confirmation for: " + resource.unconfirmed_email
 
-  %div
-    = f.text_field :first_name, :autocomplete => "off", :class => "input-xlarge", :placeholder => "First name"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} First name
+        .small-9.medium-6.large-4.columns.left
+          = f.text_field :first_name, :autocomplete => "off", :placeholder => "First name"
 
-  %div
-    = f.text_field :last_name, :autocomplete => "off", :class => "input-xlarge", :placeholder => "Last name"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} Last name
+        .small-9.medium-6.large-4.columns.left
+          = f.text_field :last_name, :autocomplete => "off", :placeholder => "Last name"
 
-  %div
-    = f.text_field :username, :autocomplete => "off", :class => "input-xlarge", :placeholder => "Username"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} Username
+        .small-9.medium-6.large-4.columns.left
+          = f.text_field :username, :autocomplete => "off", :placeholder => "Username"
 
-  %div
-    = f.password_field :password, :autocomplete => "off", :class => "input-xlarge", :placeholder => "Password (leave blank to keep the same)"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} Password
+        .small-9.medium-6.large-4.columns.left
+          = f.password_field :password, :autocomplete => "off", :placeholder => "Password (leave blank to keep the same)"
 
-  %div
-    = f.password_field :password_confirmation, :autocomplete => "off", :class => "input-xlarge", :placeholder => "Confirm password (skip if unchanged)"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} Confirm
+        .small-9.medium-6.large-4.columns.left
+          = f.password_field :password_confirmation, :autocomplete => "off", :placeholder => "Confirm password (skip if unchanged)"
 
-  %div
-    = f.password_field :current_password, :autocomplete => "off", :class => "input-xlarge", :placeholder => "Current password"
+      .row.collapse
+        .small-3.medium-2.large-1.columns
+          %span{class: "prefix radius"} Current
+        .small-9.medium-6.large-4.columns.left
+          = f.password_field :current_password, :autocomplete => "off", :placeholder => "Current password"
 
-  %div= f.submit "Update", class: "btn btn-warning"
+      .row
+        .small-12.columns= f.submit "Update", class: "button"
 
-%h3 Cancel my account
+    .row
+      .small-12.columns
+        %h3 Cancel my account
 
-%p= "Unhappy?"
-= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-danger"
+      .small-12.columns
+        %p Unhappy?
+      .small-12.columns
+        = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "button alert"
+      .small-12.columns
+        = link_to "Back", :back
 
-= link_to "Back", :back
+
+/ .row.collapse
+/   .small-3.medium-2.large-1.columns
+/     %span{class: "prefix radius"} Name
+/   .small-9.medium-6.large-4.columns.left
+/     = f.text_field :name, :autofocus => true, :placeholder => "Name of your campaign"
