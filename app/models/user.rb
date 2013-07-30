@@ -7,10 +7,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :first_name, :last_name, :username
+  attr_accessible :first_name, :last_name, :username, :language
 
-  has_many  :competitors
-  has_many  :campaigns, through: :competitors
+  has_many  :competitions
+  has_many  :campaigns, through: :competitions
 
   validates :email, :first_name, :last_name, :username, presence: true
   validates :username, :format => { :with => /^[0-9a-zA-Z]*$/, on: :create }

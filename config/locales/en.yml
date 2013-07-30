@@ -2,4 +2,36 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  # ==========================================
+  #          Application translations
+  # ==========================================
+  navbar:
+    campaigns:
+      title: "Campaigns"
+      add: "Add a campaign"
+    news:
+      title: "News"
+    sports:
+      title: Sports
+  user:
+    profile: Profile
+    settings: Settings
+    email: "Email"
+    email_long: "Email address"
+    password: "Password"
+    confirm: "Confirm"
+    confirm_password: "Confirm password"
+    current: "Current"
+    current_long: "Current password"
+    leave_blank: "(leave blank if you want to keep the same)"
+    skip: " (skip if unchanged)"
+    first_name: "First name"
+    last_name: "Last name"
+    username: "Username"
+    username_long: "Choose a username"
+    language: "Language"
+
+
+  # ==========================================
+  #          Format translations
+  # ==========================================

@@ -1,4 +1,4 @@
-class Competitor < ActiveRecord::Base
+class Competition < ActiveRecord::Base
   attr_accessible :user, :campaign
 
   belongs_to  :user
@@ -7,5 +7,5 @@ class Competitor < ActiveRecord::Base
 
   validates   :user_id, :campaign_id, presence: true
   validates   :user_id, uniqueness: { scope: :campaign_id }
-  
+
 end

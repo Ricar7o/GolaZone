@@ -1,4 +1,4 @@
-class Participant < ActiveRecord::Base
+class Participation < ActiveRecord::Base
   attr_accessible :team, :tournament
 
   belongs_to  :team
