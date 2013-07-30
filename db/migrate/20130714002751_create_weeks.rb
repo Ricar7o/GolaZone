@@ -4,8 +4,9 @@ class CreateWeeks < ActiveRecord::Migration
     create_table :weeks do |t|
       t.references    :tournament
       t.integer       :week_number
+      t.datetime      :earliest_match,    default: Time.new(9999)
       t.datetime      :latest_match,      default: Time.at(0)
-      t.boolean       :postponed_matches, default: false
+      t.boolean       :rescheduled_matches, default: false
       t.timestamps
     end
 

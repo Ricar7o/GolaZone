@@ -35,4 +35,14 @@ GolaZone::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # =======================================
+  # This is the function that freezes time to a particular one that we can use.
+  # Use Timecop.freeze to have Time.now equal to the set time.
+  # Use Timecop.travel to start at that time and keep moving ahead in time
+  config.after_initialize do
+    # Set Time.now to May 10, 2013 0:00:00 AM
+    t = Time.local(2013, 5, 10)
+    Timecop.freeze(t)
+  end
 end

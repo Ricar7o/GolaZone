@@ -1,5 +1,5 @@
 class Week < ActiveRecord::Base
-  attr_accessible :week_number, :latest_match, :postponed_matches
+  attr_accessible :week_number, :earliest_match, :latest_match, :rescheduled_matches
 
   belongs_to  :tournament
   has_many    :matches

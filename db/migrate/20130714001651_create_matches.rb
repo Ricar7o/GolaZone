@@ -6,7 +6,7 @@ class CreateMatches < ActiveRecord::Migration
       t.references  :home_team
       t.references  :away_team
       t.datetime    :match_time
-      t.boolean     :postponed,   default: false
+      t.boolean     :rescheduled,   default: false
       t.integer     :home_score
       t.integer     :away_score
       t.integer     :leg

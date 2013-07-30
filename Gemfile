@@ -14,6 +14,9 @@ group :production do
   gem 'pg'
 end
 
+group :test do
+end
+
 gem 'haml'
 gem 'better_errors'
 gem 'devise'
@@ -23,6 +26,7 @@ gem 'pry'
 gem 'cancan'
 gem 'debugger'
 gem 'zeus'
+gem 'timecop'
 
 # Gems used only for assets and not required
 # in production environments by default.

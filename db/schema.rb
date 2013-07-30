@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
     t.integer  "home_team_id"
     t.integer  "away_team_id"
     t.datetime "match_time"
-    t.boolean  "postponed",    :default => false
+    t.boolean  "rescheduled",  :default => false
     t.integer  "home_score"
     t.integer  "away_score"
     t.integer  "leg"
@@ -125,10 +125,11 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
   create_table "weeks", :force => true do |t|
     t.integer  "tournament_id"
     t.integer  "week_number"
-    t.datetime "latest_match",      :default => '1970-01-01 00:00:00'
-    t.boolean  "postponed_matches", :default => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "earliest_match",      :default => '9999-01-01 06:00:00'
+    t.datetime "latest_match",        :default => '1970-01-01 00:00:00'
+    t.boolean  "rescheduled_matches", :default => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
   end
 
   add_index "weeks", ["tournament_id", "week_number"], :name => "index_weeks_on_tournament_id_and_week_number", :unique => true
