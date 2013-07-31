@@ -32,5 +32,4 @@ class Tournament < ActiveRecord::Base
     end
   end
 
-
 end
