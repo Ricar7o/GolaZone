@@ -19,27 +19,15 @@ class Tournament < ActiveRecord::Base
   # Open tournaments are those where the EARLIEST match of the LAST week hasn't passed
   # Open tournaments are meant to be used for the creation of a new campaign
   scope :open, -> {
-    joins(:weeks).where('weeks.week_number = tournaments.number_of_weeks AND ? < weeks.earliest_match', [Time.now]) # ------->
+    joins(:weeks).where('weeks.week_number = tournaments.number_of_weeks AND ? < weeks.earliest_match', [Time.now])
     # The last portion of the query gets passed onto the place where the question mark is inside the query
   }
 
-  def matchdays_left
-    latest_match = Time.now
-    self.weeks.count.times do |i|
-      matchday = self.weeks.where(week_number: i+1).first
-      if matchday.matches.count > 0
-        latest_match = week.matches.order('match_time DESC').first.match_time
-        return self.number_of_weeks - i if latest_match > Time.now # ---> This time needs to be changed to the current time once playing live
-      end
-    end
-    return 0
-  end
-
+  # Calculates the number of weeks left in a tournament from this moment
   #
-  #
+  # Returns the integer number of weeks left
   def weeks_left
     weeks.each do |week|
-      # 'Time.new' needs to be changed to 'Time.now' before pushing to production ------------!!!!
       return number_of_weeks - week.week_number + 1 if week.latest_match > Time.now
     end
   end
