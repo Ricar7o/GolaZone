@@ -19,9 +19,9 @@ premier = Tournament.create(name: "Premier League", organizer: "FA", number_of_w
 champions = Tournament.create(name: "Champions League", organizer: "UEFA", number_of_weeks: 13, sport: "Soccer", competition_style: "Hybrid", season: "2012-2013", country: "Europe")
 
 # ========== Campaigns ============
-soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round Robin", tournament: premier)
+soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round Robin", tournament_id: premier)
 
-soccerite = Campaign.create(name: "First Soccerite", published: true, number_of_matchdays: 3, win_points: 5, lose_points: 1, draw_points: 2, contest_type: "Knockout", tournament: champions)
+soccerite = Campaign.create(name: "First Soccerite", published: true, number_of_matchdays: 3, win_points: 5, lose_points: 1, draw_points: 2, contest_type: "Knockout", tournament_id: champions)
 
 # ============= Teams ===========
 
@@ -48,10 +48,10 @@ westham     = premier.teams.create(name: "West Ham United", home_field: "Boleyn 
 wigan       = premier.teams.create(name: "Wigan Athletic", home_field: "DW Stadium", shape: "Poor", sport: "Soccer")
 
 # ------ Champions League --------
-arsenalcl   = champions.participations.create(team: Team.find_by_name("Arsenal"))
-chelseacl   = champions.participations.create(team: Team.find_by_name("Chelsea"))
-manccl      = champions.participations.create(team: Team.find_by_name("Manchester City"))
-manucl      = champions.participations.create(team: Team.find_by_name("Manchester United"))
+arsenalcl   = champions.participations.create(team_id: Team.find_by_name("Arsenal"))
+chelseacl   = champions.participations.create(team_id: Team.find_by_name("Chelsea"))
+manccl      = champions.participations.create(team_id: Team.find_by_name("Manchester City"))
+manucl      = champions.participations.create(team_id: Team.find_by_name("Manchester United"))
 
 # ======= Weeks =============
 premier.number_of_weeks.times do |week|

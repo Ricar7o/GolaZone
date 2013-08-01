@@ -9,21 +9,19 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    puts params["tournament"]
-    puts params["tournament"].inspect
-    puts params["season"]
-    puts params["season"].inspect
-    @tournament = Tournament.where(name: params["tournament"], season: params["season"])
-    # render action: 'new'
+    @campaign = Campaign.new(params[:campaign])
+    @campaign.draw_points = -1 if params[:campaign][:allow_draw] == "No"
+    @campaign.save
+    @params = params
+    redirect_to @campaign
+  end
+
+  def show
+
   end
 
   def calculate_weeks_left
-    if params[:tournament] && params[:season]
-      tournament_selected = params[:tournament]
-      season_selected = params[:season]
-      @tournament = Tournament.where(name: tournament_selected, season: season_selected).first #Variable with the tournament selected to dig into the matchdays
-      # @weeks_left = @tournament.weeks_left
-    end
+    @tournament = Tournament.find(params[:tournament_id]) if params[:tournament_id]
     render 'calculate_weeks_left', layout: false
   end
 

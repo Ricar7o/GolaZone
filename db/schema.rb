@@ -15,16 +15,16 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
-    t.boolean  "published"
+    t.boolean  "published",           :default => true
     t.integer  "tournament_id"
     t.integer  "number_of_matchdays"
-    t.integer  "win_points"
-    t.integer  "lose_points"
-    t.integer  "draw_points"
+    t.integer  "win_points",          :default => 3
+    t.integer  "lose_points",         :default => 0
+    t.integer  "draw_points",         :default => 1
     t.string   "contest_type"
     t.integer  "person_limit"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "competitions", :force => true do |t|

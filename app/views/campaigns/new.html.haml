@@ -4,102 +4,100 @@
 
   .small-12.medium-6.large-6.small-centered.medium-centered.large-centered.columns
     = form_for @campaign, html: { :class => "custom"} do |f|
-      %fieldset
-        %legend General data
-        .row
-          .small-12.columns
-            - if @campaign.errors.any?
-              #error_explanation.twelve.columns
-                %h2= pluralize(@campaign.errors.count, "error") + "prohibited this campaign from being saved:"
-                %%ul
-                  - @campaign.errors.full_messages.each do |msg|
-                    %li= msg
+      .row
+        .small-12.columns
+          - if @campaign.errors.any?
+            #error_explanation.twelve.columns
+              %h2= pluralize(@campaign.errors.count, "error") + "prohibited this campaign from being saved:"
+              %%ul
+                - @campaign.errors.full_messages.each do |msg|
+                  %li= msg
 
-        .row.collapse
-          .small-3.medium-3.large-3.columns
-            %span{class: "prefix radius"} Name
-          .small-9.medium-9.large-9.columns.left
-            = f.text_field :name, :autofocus => true, :placeholder => "Name of your campaign"
+      .row.collapse
+        .small-3.medium-3.large-3.columns
+          %span{class: "prefix radius"} Name
+        .small-9.medium-9.large-9.columns.left
+          = f.text_field :name, :autofocus => true, :placeholder => "Name of your campaign"
 
-        .row
-          .small-3.medium-3.large-3.columns
-            %label.inline Scope
-          .small-6.medium-4.large-6.columns.left
-            .switch.round.left
-              %input#privacy(name='switch-privacy' type='radio' checked)
-              %label(for='public' onclick='') Public
+      .row
+        .small-3.medium-3.large-3.columns
+          %label.inline Scope
+        .small-6.medium-4.large-6.columns.left
+          .switch.round.left
+            = f.radio_button :published, true, checked: true
+            %label(for='public' onclick='') Public
 
-              %input#z1(name='switch-privacy' type='radio')
-              %label(for='private' onclick='') Private
+            = f.radio_button :published, false
+            %label(for='private' onclick='') Private
 
-              %span
+            %span
 
-        .row
-          .small-12.medium-12.large-12.columns.left
-            = f.select(:tournament_id, tournaments_for_select, { include_blank: "Select a tournament" }, { id: "customDropdown", :class => "expand tournament_selection" })
+      .row
+        .small-12.medium-12.large-12.columns.left
+          = f.select(:tournament_id, tournaments_for_select, { include_blank: "Select a tournament" }, { id: "customDropdown", :class => "expand tournament_selection" })
 
-        #matchdays.row.collapse{style: "display:none"}
-          .small-4.medium-4.large-2.columns
-            %span.prefix.radius= "Play for:"
-          #matchdays_for_tournament.small-4.medium-4.large-2.columns.left
-            = f.number_field(:number_of_matchdays, {})
-          .small-4.medium-4.large-4.columns.left
-            %span.postfix.radius= "matchdays"
+      #matchdays.row.collapse{style: "display:none"}
+        .small-4.medium-4.large-2.columns
+          %span.prefix.radius= "Play for:"
+        #matchdays_for_tournament.small-4.medium-4.large-2.columns.left
+          = f.number_field(:number_of_matchdays, {})
+        .small-4.medium-4.large-4.columns.left
+          %span.postfix.radius= "matchdays"
 
-      %fieldset
-        %legend Set your rules
-        .row
-          .small-12.medium-12.large-12.columns.left
-            = f.select(:contest_type, [["Round Robbin"],["Playoff"],["Hybrid"]], { include_blank: "Select your competition style" }, { id: "customDropdown2", :class => "expand contest_type_selection" })
+      .row
+        .small-12.medium-12.large-12.columns.text-center
+          %h4 Set your rules
+        .small-12.medium-12.large-12.columns.left
+          = f.select(:contest_type, [["Round Robbin"],["Playoff"],["Hybrid"]], { include_blank: "Select your competition style" }, { id: "customDropdown2", :class => "expand contest_type_selection" })
 
-        .row.collapse
-          .small-8.medium-6.large-6.columns
-            %span.prefix.radius= "Number of participants:"
-          .small-4.medium-4.large-4.columns.left
-            = f.number_field(:person_limit, {})
+      .row.collapse
+        .small-8.medium-6.large-6.columns
+          %span.prefix.radius= "Number of participants:"
+        .small-4.medium-4.large-4.columns.left
+          = f.number_field(:person_limit, {})
 
-        .row
-          .small-3.medium-3.large-3.columns
-            %label.inline Allow draws
-          .small-6.medium-4.large-6.columns.left
-            .switch.round.left
-              %input#draw(name='switch-draw' type='radio' checked)
-              %label(for='yes' onclick='') Yes
+      .row
+        .small-3.medium-3.large-3.columns
+          %label.inline Allow draws
+        .small-6.medium-4.large-6.columns.left
+          .switch.round.left
+            = f.radio_button :allow_draw, "Yes", checked: true
+            %label(for='yes' onclick='') Yes
 
-              %input#z1(name='switch-draw' type='radio')
-              %label(for='no' onclick='') No
+            = f.radio_button :allow_draw, "No"
+            %label(for='no' onclick='') No
 
-              %span
+            %span
 
-        .row
-          .small-12.large-8.large-centered.columns
-            .row.collapse
-              .small-4.medium-4.large-4.columns
-                %span.prefix.radius= "Win:"
-              .small-4.medium-4.large-4.columns.left
-                = f.number_field(:win_points, {})
-              .small-4.medium-4.large-4.columns.left
-                %span.postfix.radius= "points"
+      .row
+        .small-12.large-8.large-centered.columns
+          .row.collapse
+            .small-4.medium-4.large-4.columns
+              %span.prefix.radius= "Win:"
+            .small-4.medium-4.large-4.columns.left
+              = f.number_field(:win_points, {})
+            .small-4.medium-4.large-4.columns.left
+              %span.postfix.radius= "points"
 
-            .row.collapse
-              .small-4.medium-4.large-4.columns
-                %span.prefix.radius= "Lose:"
-              .small-4.medium-4.large-4.columns.left
-                = f.number_field(:lose_points, {})
-              .small-4.medium-4.large-4.columns.left
-                %span.postfix.radius= "points"
+          .row.collapse
+            .small-4.medium-4.large-4.columns
+              %span.prefix.radius= "Lose:"
+            .small-4.medium-4.large-4.columns.left
+              = f.number_field(:lose_points, {})
+            .small-4.medium-4.large-4.columns.left
+              %span.postfix.radius= "points"
 
-            .row.collapse
-              .small-4.medium-4.large-4.columns
-                %span.prefix.radius= "Draw:"
-              .small-4.medium-4.large-4.columns.left
-                = f.number_field(:draw_points, {})
-              .small-4.medium-4.large-4.columns.left
-                %span.postfix.radius= "points"
+          .row.collapse
+            .small-4.medium-4.large-4.columns
+              %span.prefix.radius= "Draw:"
+            .small-4.medium-4.large-4.columns.left
+              = f.number_field(:draw_points, {})
+            .small-4.medium-4.large-4.columns.left
+              %span.postfix.radius= "points"
 
-        .row
-          .small-6.large-6.columns= f.submit "Submit", class: "button expand"
-          .small-6.large-6.columns= link_to "Cancel", pages_path, :class => "button secondary expand"
+      .row
+        .small-6.large-6.columns= f.submit "Submit", class: "button expand"
+        .small-6.large-6.columns= link_to "Cancel", pages_path, :class => "button secondary expand"
 
 / .row
 /   .large-12.columns

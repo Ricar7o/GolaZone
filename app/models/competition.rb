@@ -1,5 +1,5 @@
 class Competition < ActiveRecord::Base
-  attr_accessible :user, :campaign
+  attr_accessible :user_id, :campaign_id
 
   belongs_to  :user
   belongs_to  :campaign

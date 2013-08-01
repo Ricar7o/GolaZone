@@ -1,5 +1,5 @@
 class Pick < ActiveRecord::Base
-  attr_accessible :selected_result, :competitor, :match
+  attr_accessible :selected_result, :competition_id, :match_id
 
   belongs_to  :competition
   belongs_to  :match
