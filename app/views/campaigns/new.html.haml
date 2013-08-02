@@ -48,7 +48,7 @@
         .small-12.medium-12.large-12.columns.text-center
           %h4= t("campaigns.rules")
         .small-12.medium-12.large-12.columns.left
-          = f.select(:contest_type, [[t("campaigns.round_robin"), "Round-robin"],[t("campaigns.playoff"), "Playoff"],[t("campaigns.hybrid"), "Hybrid"]], { include_blank: t("campaigns.competition") }, { id: "customDropdown2", :class => "expand contest_type_selection" })
+          = f.select(:contest_type, [[t("campaigns.round_robin"), "Round-robin"],[t("campaigns.knockout"), "Knockout"],[t("campaigns.hybrid"), "Hybrid"]], { include_blank: t("campaigns.competition") }, { id: "customDropdown2", :class => "expand contest_type_selection" })
 
       .row.collapse
         .small-8.medium-6.large-6.columns

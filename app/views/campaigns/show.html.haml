@@ -1,6 +1,8 @@
 .row
   .small-12.text-center
     %h1= @campaign.name
+
 .row
-  .small-12
-    = @campaign.inspect
+  .small-12.small-centered.columns
+    %h2= t("campaigns.next_matchday")
+    = render partial: "weeks/show_week"

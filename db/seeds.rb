@@ -14,38 +14,38 @@ m = User.create(email: "matt.tschoegl@gmail.com", first_name: "Matt", last_name:
 m.update_attribute(:encrypted_password, "$2a$10$KYAleurGyaNoVR.W/lBfWumrwAkMGHlf8MOpTtPazuHk8uxBJ/yUy")
 
 # ======= Tournaments ==========
-premier = Tournament.create(name: "Premier League", organizer: "FA", number_of_weeks: 38, sport: "Soccer", competition_style: "Round Robin", season: "2012-2013", country: "England")
+premier = Tournament.create(name: "Premier League", organizer: "FA", number_of_weeks: 38, sport: "Football", competition_style: "Round Robin", season: "2012-2013", country: "England")
 
-champions = Tournament.create(name: "Champions League", organizer: "UEFA", number_of_weeks: 13, sport: "Soccer", competition_style: "Hybrid", season: "2012-2013", country: "Europe")
+champions = Tournament.create(name: "Champions League", organizer: "UEFA", number_of_weeks: 13, sport: "Football", competition_style: "Hybrid", season: "2012-2013", country: "Europe")
 
 # ========== Campaigns ============
-soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round Robin", tournament_id: premier)
+soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round-robin", tournament_id: premier)
 
 soccerite = Campaign.create(name: "First Soccerite", published: true, number_of_matchdays: 3, win_points: 5, lose_points: 1, draw_points: 2, contest_type: "Knockout", tournament_id: champions)
 
 # ============= Teams ===========
 
 # ------- Premier League --------
-arsenal     = premier.teams.create(name: "Arsenal", home_field: "Emirates Stadium", shape: "Excellent", sport: "Soccer")
-astonvilla  = premier.teams.create(name: "Aston Villa", home_field: "Villa Park", shape: "Poor", sport: "Soccer")
-chelsea     = premier.teams.create(name: "Chelsea", home_field: "Stamford Bridge", shape: "Excellent", sport: "Soccer")
-everton     = premier.teams.create(name: "Everton", home_field: "Goodison Park", shape: "Excellent", sport: "Soccer")
-fulham      = premier.teams.create(name: "Fulham", home_field: "Craven Cottage", shape: "OK", sport: "Soccer")
-liverpool   = premier.teams.create(name: "Liverpool", home_field: "Anfield", shape: "Good", sport: "Soccer")
-manc        = premier.teams.create(name: "Manchester City", home_field: "Etihad Stadium", shape: "Excellent", sport: "Soccer")
-manu        = premier.teams.create(name: "Manchester United", home_field: "Old Trafford", shape: "Excellent", sport: "Soccer")
-newcastle   = premier.teams.create(name: "Newcastle", home_field: "St. James' Park", shape: "Poor", sport: "Soccer")
-norwich     = premier.teams.create(name: "Norwich", home_field: "Carrow Road", shape: "OK", sport: "Soccer")
-qpr         = premier.teams.create(name: "Queens Park Rangers", home_field: "Loftus Road", shape: "Poor", sport: "Soccer")
-reading     = premier.teams.create(name: "Reading", home_field: "Madejski Stadium", shape: "Poor", sport: "Soccer")
-sotton      = premier.teams.create(name: "Southampton", home_field: "St. Mary's Stadium", shape: "OK", sport: "Soccer")
-stoke       = premier.teams.create(name: "Stoke City", home_field: "Britannia Stadium", shape: "OK", sport: "Soccer")
-sunderland  = premier.teams.create(name: "Sunderland", home_field: "Stadium of Light", shape: "Poor", sport: "Soccer")
-swansea     = premier.teams.create(name: "Swansea City", home_field: "Liberty Stadium", shape: "Good", sport: "Soccer")
-spurs       = premier.teams.create(name: "Tottenham Hotspur", home_field: "White Hart Lane", shape: "Excellent", sport: "Soccer")
-westbrom    = premier.teams.create(name: "West Bromwich Albion", home_field: "The Hawthorns", shape: "Good", sport: "Soccer")
-westham     = premier.teams.create(name: "West Ham United", home_field: "Boleyn Ground", shape: "Good", sport: "Soccer")
-wigan       = premier.teams.create(name: "Wigan Athletic", home_field: "DW Stadium", shape: "Poor", sport: "Soccer")
+arsenal     = premier.teams.create(name: "Arsenal", home_field: "Emirates Stadium", shape: "Excellent", sport: "Football")
+astonvilla  = premier.teams.create(name: "Aston Villa", home_field: "Villa Park", shape: "Poor", sport: "Football")
+chelsea     = premier.teams.create(name: "Chelsea", home_field: "Stamford Bridge", shape: "Excellent", sport: "Football")
+everton     = premier.teams.create(name: "Everton", home_field: "Goodison Park", shape: "Excellent", sport: "Football")
+fulham      = premier.teams.create(name: "Fulham", home_field: "Craven Cottage", shape: "OK", sport: "Football")
+liverpool   = premier.teams.create(name: "Liverpool", home_field: "Anfield", shape: "Good", sport: "Football")
+manc        = premier.teams.create(name: "Manchester City", home_field: "Etihad Stadium", shape: "Excellent", sport: "Football")
+manu        = premier.teams.create(name: "Manchester United", home_field: "Old Trafford", shape: "Excellent", sport: "Football")
+newcastle   = premier.teams.create(name: "Newcastle United", home_field: "St. James' Park", shape: "Poor", sport: "Football")
+norwich     = premier.teams.create(name: "Norwich City", home_field: "Carrow Road", shape: "OK", sport: "Football")
+qpr         = premier.teams.create(name: "Queens Park Rangers", home_field: "Loftus Road", shape: "Poor", sport: "Football")
+reading     = premier.teams.create(name: "Reading", home_field: "Madejski Stadium", shape: "Poor", sport: "Football")
+sotton      = premier.teams.create(name: "Southampton", home_field: "St. Mary's Stadium", shape: "OK", sport: "Football")
+stoke       = premier.teams.create(name: "Stoke City", home_field: "Britannia Stadium", shape: "OK", sport: "Football")
+sunderland  = premier.teams.create(name: "Sunderland", home_field: "Stadium of Light", shape: "Poor", sport: "Football")
+swansea     = premier.teams.create(name: "Swansea City", home_field: "Liberty Stadium", shape: "Good", sport: "Football")
+spurs       = premier.teams.create(name: "Tottenham Hotspur", home_field: "White Hart Lane", shape: "Excellent", sport: "Football")
+westbrom    = premier.teams.create(name: "West Bromwich Albion", home_field: "The Hawthorns", shape: "Good", sport: "Football")
+westham     = premier.teams.create(name: "West Ham United", home_field: "Boleyn Ground", shape: "Good", sport: "Football")
+wigan       = premier.teams.create(name: "Wigan Athletic", home_field: "DW Stadium", shape: "Poor", sport: "Football")
 
 # ------ Champions League --------
 arsenalcl   = champions.participations.create(team_id: Team.find_by_name("Arsenal"))

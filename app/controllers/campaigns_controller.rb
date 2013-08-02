@@ -19,6 +19,8 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
+    @tournament = @campaign.tournament
+    @next_week = @campaign.tournament.weeks.where(week_number: @tournament.next_week).first
   end
 
   def calculate_weeks_left

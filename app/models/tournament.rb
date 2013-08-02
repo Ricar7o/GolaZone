@@ -32,4 +32,8 @@ class Tournament < ActiveRecord::Base
     end
   end
 
+  def next_week
+    number_of_weeks - weeks_left + 1
+  end
+
 end

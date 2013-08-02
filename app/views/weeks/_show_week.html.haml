@@ -1,0 +1,33 @@
+.row
+  .small-12.columns
+    %h4= t("campaigns.week") + " #" + @tournament.next_week.to_s
+    %h6.subheader= @next_week.earliest_match.strftime("%a %b %d, %Y") + " - " + @next_week.latest_match.strftime("%a %b %d, %Y")
+
+.row
+  .small-12.large-12.columns
+    %table
+      %thead
+        %tr
+          %th.text-center{colspan: 2}= t("matches.home")
+          %th
+          %th.text-center{colspan: 2}= t("matches.away")
+      %tbody
+        - @next_week.matches.each do |match|
+          - home_tm = Team.find(match.home_team_id).name
+          - away_tm = Team.find(match.away_team_id).name
+          %tr
+            %td= home_tm
+            %td.team_logo
+              = image_tag @tournament.sport.gsub(" ","_") + "/" + @tournament.name.gsub(" ","_") + "/" + home_tm.gsub(" ","_") + ".png", width: "100%"
+            %td.text-center
+              %small= "vs."
+            %td.team_logo
+              = image_tag @tournament.sport.gsub(" ","_") + "/" + @tournament.name.gsub(" ","_") + "/" + away_tm.gsub(" ","_") + ".png", width: "100%"
+            %td= away_tm
+      / .row
+      /   .small-5.columns.text-right
+      /     = Team.find(match.home_team_id).name
+      /   .small-2.columns.text-center
+      /     = "vs."
+      /   .small-5.columns
+      /     = Team.find(match.away_team_id).name
