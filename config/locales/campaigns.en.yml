@@ -1,0 +1,27 @@
+# Translations for all of the pages that CRUD campaigns
+
+en:
+  campaigns:
+    create_label: "Create a campaign"
+    prohibit: "prohibited this campaign from being saved:"
+    name: "Name"
+    name_long: "Name of your campaign"
+    audience: "Audience"
+    public: "Public"
+    private: "Private"
+    select_tournament: "Select a tournament"
+    play_for: "Play for:"
+    matchdays: "matchdays"
+    rules: "Set your rules"
+    competition: "Select your competition style"
+    limit: "Max. players:"
+    allow_draw: "Allow draws"
+    yea: "Yes"
+    nay: "No"
+    round_robin: "Round-robin"
+    playoff: "Playoff"
+    hybrid: "Hybrid"
+    win: "Win:"
+    lose: "Lose:"
+    draw: "Draw:"
+    points: "points"

@@ -30,6 +30,9 @@ es-MX:
     username: "Usuario"
     username_long: "Escoja un nombre de usuario"
     language: "Idioma"
+  general:
+    submit: "Submit"
+    cancel: "Cancel"
 
   # ==========================================
   #          Format translations
@@ -169,9 +172,10 @@ es-MX:
     select:
       prompt: Por favor selecciona
     submit:
-      create: Crear %{model}
-      submit: Guardar %{model}
-      update: Actualizar %{model}
+      create: Crear
+      submit: Guardar
+      update: Actualizar
+      cancel: Cancelar
   number:
     currency:
       format:

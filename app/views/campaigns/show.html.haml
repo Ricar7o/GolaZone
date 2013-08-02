@@ -1,6 +1,6 @@
-%h1 Show view
-%p Campaign data
-= @campaign
-%br
-%p Params
-= @params
+.row
+  .small-12.text-center
+    %h1= @campaign.name
+.row
+  .small-12
+    = @campaign.inspect

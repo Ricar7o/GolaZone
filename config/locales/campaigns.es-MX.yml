@@ -1,0 +1,27 @@
+# Translations for the pages that CRUD campaigns
+
+es-MX:
+  campaigns:
+    create_label: "Crea una campaña"
+    prohibit: "evitaron que se guardara la campaña:"
+    name: "Nombre"
+    name_long: "Nombre de tu campaña"
+    audience: "Audiencia"
+    public: "Público"
+    private: "Privado"
+    select_tournament: "Selecciona un torneo"
+    play_for: "Juega por:"
+    matchdays: "jornadas"
+    rules: "Elige tus reglas"
+    competition: "Selecciona tu estilo de competencia"
+    limit: "Jugadores máximos:"
+    allow_draw: "Permitir empates"
+    yea: "Sí"
+    nay: "No"
+    round_robin: "Formato de liga"
+    playoff: "Eliminatoria"
+    hybrid: "Híbrido"
+    win: "Triunfo:"
+    lose: "Derrota:"
+    draw: "Empate:"
+    points: "puntos"

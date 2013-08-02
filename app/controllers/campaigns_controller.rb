@@ -9,15 +9,16 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.new(params[:campaign])
+    @campaign = current_user.campaigns.new(params[:campaign])
     @campaign.draw_points = -1 if params[:campaign][:allow_draw] == "No"
+    @campaign.competitions.build(user_id: current_user.id)
     @campaign.save
     @params = params
     redirect_to @campaign
   end
 
   def show
-
+    @campaign = Campaign.find(params[:id])
   end
 
   def calculate_weeks_left

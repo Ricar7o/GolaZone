@@ -30,6 +30,12 @@ en:
     username: "Username"
     username_long: "Choose a username"
     language: "Language"
+  helpers:
+    submit:
+      create: "Create"
+      submit: "Submit"
+      update: "Update"
+      cancel: "Cancel"
 
 
   # ==========================================
