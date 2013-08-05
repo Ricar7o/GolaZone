@@ -4,7 +4,7 @@
     %h6.subheader= @next_week.earliest_match.strftime("%a %b %d, %Y") + " - " + @next_week.latest_match.strftime("%a %b %d, %Y")
 
 .row
-  .small-12.large-12.columns
+  .small-12.columns
     %table
       %thead
         %tr
@@ -16,7 +16,7 @@
           - home_tm = Team.find(match.home_team_id).name
           - away_tm = Team.find(match.away_team_id).name
           %tr
-            %td= home_tm
+            %td.text-right= home_tm
             %td.team_logo
               = image_tag @tournament.sport.gsub(" ","_") + "/" + @tournament.name.gsub(" ","_") + "/" + home_tm.gsub(" ","_") + ".png", width: "100%"
             %td.text-center

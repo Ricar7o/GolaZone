@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 group :development do
   gem 'sqlite3'
   gem 'quiet_assets'
+  gem 'rspec-rails'
 end
 
 group :production do
@@ -15,6 +16,7 @@ group :production do
 end
 
 group :test do
+  gem 'rspec-rails'
 end
 
 gem 'haml'
