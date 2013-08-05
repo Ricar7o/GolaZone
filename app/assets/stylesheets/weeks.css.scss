@@ -2,8 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.team_logo {
+.pickable {
+  border: 2px solid rgba(0,150,0,0);
+
+  &:hover {
+    // background-color: rgba(0,150,0,0.5)
+    border: 2px solid rgba(0,150,0,0.5)
+  }
+}
+
+.team_picker {
+  width: 40%;
+}
+
+.draw_picker {
+  width: 16%;
+}
+
+.score_box {
+  font-size: 2em;
+  width: 16%;
   padding: 0;
-  margin: 0;
-  width: 3em;
 }

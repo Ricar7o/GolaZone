@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714004653) do
+ActiveRecord::Schema.define(:version => 20130714004656) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
     t.string   "venue"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.string   "final_result"
   end
 
   add_index "matches", ["home_team_id", "away_team_id", "match_time"], :name => "index_matches_on_home_team_id_and_away_team_id_and_match_time", :unique => true
@@ -81,6 +82,9 @@ ActiveRecord::Schema.define(:version => 20130714004653) do
     t.string   "sport"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "short_name"
+    t.string   "country"
+    t.string   "logo"
   end
 
   add_index "teams", ["name", "sport"], :name => "index_teams_on_name_and_sport", :unique => true

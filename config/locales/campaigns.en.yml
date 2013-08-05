@@ -27,3 +27,5 @@ en:
     points: "points"
     next_matchday: "Next matchday"
     week: "Week"
+    last_matchday: "Last matchday"
+    current_matchday: "Current matchday"

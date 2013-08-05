@@ -27,3 +27,5 @@ es-MX:
     points: "puntos"
     next_matchday: "Siguiente jornada"
     week: "Semana"
+    last_matchday: "Jornada anterior"
+    current_matchday: "Jornada actual"

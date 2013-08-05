@@ -36,4 +36,8 @@ class Tournament < ActiveRecord::Base
     number_of_weeks - weeks_left + 1
   end
 
+  def current_week
+    number_of_weeks - weeks_left
+  end
+
 end

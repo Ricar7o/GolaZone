@@ -2,3 +2,5 @@ es-MX:
   matches:
     home: "Local"
     away: "Visitante"
+    draw: "Empate"
+    score: "Marcador"

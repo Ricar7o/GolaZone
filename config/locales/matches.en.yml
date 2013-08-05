@@ -2,3 +2,5 @@ en:
   matches:
     home: "Home"
     away: "Away"
+    draw: "Draw"
+    score: "Score"

@@ -5,4 +5,9 @@
 .row
   .small-12.columns
     %h2= t("campaigns.next_matchday")
-    = render partial: "weeks/show_week"
+    = render partial: "weeks/show_week", locals: { week: @next_week, show_results: false, allow_picks: true }
+
+.row
+  .small-12.columns
+    %h2= t("campaigns.last_matchday")
+    = render partial: "weeks/show_week", locals: { week: @current_week, show_results: true, allow_picks: false }
