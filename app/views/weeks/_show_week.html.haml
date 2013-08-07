@@ -24,16 +24,16 @@
           - home_tm = Team.find(match.home_team_id)
           - away_tm = Team.find(match.away_team_id)
           %tr{id: match.id}
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''}", :"data-match-id" => match.id, :"data-result" => "H", id: "#{match.id}H"}
+            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{picked_result?(match.id, "H") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "H", id: "#{match.id}H"}
               = image_tag home_tm.logo, width: "50em"
               %br
               %span= home_tm.name
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{ show_results ? 'score_box' : ''}", :"data-match-id" => match.id, :"data-result" => "D", id: "#{match.id}D"}
+            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{ show_results ? 'score_box' : ''} #{picked_result?(match.id, "D") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "D", id: "#{match.id}D"}
               - if show_results
                 = match.home_score.to_s + "-" + match.away_score.to_s
               - else
                 %span= "vs."
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''}", :"data-match-id" => match.id, :"data-result" => "A", id: "#{match.id}A"}
+            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{picked_result?(match.id, "A") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "A", id: "#{match.id}A"}
               = image_tag away_tm.logo, width: "50em"
               %br
               %span= away_tm.name
