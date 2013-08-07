@@ -3,9 +3,6 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @tournaments = Tournament.open
-    # @tournaments = Tournament.find(:all, :conditions => ['season LIKE ?', '%' + Time.now.year.to_s + '%'])
-
-    @params = params # Just for debugging purposes
   end
 
   def create
@@ -22,11 +19,6 @@ class CampaignsController < ApplicationController
     @tournament = @campaign.tournament
     @next_week = @campaign.tournament.weeks.where(week_number: @tournament.next_week).first
     @current_week = @campaign.tournament.weeks.where(week_number: @tournament.current_week).first
-  end
-
-  def calculate_weeks_left
-    @tournament = Tournament.find(params[:tournament_id]) if params[:tournament_id]
-    render 'calculate_weeks_left', layout: false
   end
 
 end

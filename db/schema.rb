@@ -66,14 +66,14 @@ ActiveRecord::Schema.define(:version => 20130714004656) do
   add_index "participations", ["tournament_id", "team_id"], :name => "index_participations_on_tournament_id_and_team_id", :unique => true
 
   create_table "picks", :force => true do |t|
-    t.integer  "competitor_id"
+    t.integer  "competition_id"
     t.integer  "match_id"
-    t.integer  "selected_result"
+    t.string   "selected_result"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "picks", ["competitor_id", "match_id"], :name => "index_picks_on_competitor_id_and_match_id", :unique => true
+  add_index "picks", ["competition_id", "match_id"], :name => "index_picks_on_competition_id_and_match_id", :unique => true
 
   create_table "teams", :force => true do |t|
     t.string   "name"

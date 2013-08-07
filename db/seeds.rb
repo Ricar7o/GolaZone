@@ -13,15 +13,21 @@ r.update_attribute(:encrypted_password, "$2a$10$KYAleurGyaNoVR.W/lBfWumrwAkMGHlf
 m = User.create(email: "matt.tschoegl@gmail.com", first_name: "Matt", last_name: "Tschoegl", username: "mst2002", language: "en")
 m.update_attribute(:encrypted_password, "$2a$10$KYAleurGyaNoVR.W/lBfWumrwAkMGHlf8MOpTtPazuHk8uxBJ/yUy")
 
+puts "Added users"
+
 # ======= Tournaments ==========
 premier = Tournament.create(name: "Premier League", organizer: "FA", number_of_weeks: 38, sport: "Football", competition_style: "Round Robin", season: "2012-2013", country: "England")
 
 champions = Tournament.create(name: "Champions League", organizer: "UEFA", number_of_weeks: 13, sport: "Football", competition_style: "Hybrid", season: "2012-2013", country: "Europe")
 
+puts "Added tournaments"
+
 # ========== Campaigns ============
 soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round-robin", tournament_id: premier)
 
 soccerite = Campaign.create(name: "First Soccerite", published: true, number_of_matchdays: 3, win_points: 5, lose_points: 1, draw_points: 2, contest_type: "Knockout", tournament_id: champions)
+
+puts "Added campaigns"
 
 # ============= Teams ===========
 
@@ -47,16 +53,22 @@ westbrom    = premier.teams.create(name: "West Bromwich Albion", short_name: "WB
 westham     = premier.teams.create(name: "West Ham United", short_name: "WHU", home_field: "Boleyn Ground", shape: "Good", sport: "Football", country: "England", logo: "Football/Premier_League/West_Ham_United.png")
 wigan       = premier.teams.create(name: "Wigan Athletic", short_name: "WIG", home_field: "DW Stadium", shape: "Poor", sport: "Football", country: "England", logo: "Football/Premier_League/Wigan_Athletic.png")
 
+puts "Added EPL teams"
+
 # ------ Champions League --------
 arsenalcl   = champions.participations.create(team_id: Team.find_by_name("Arsenal"))
 chelseacl   = champions.participations.create(team_id: Team.find_by_name("Chelsea"))
 manccl      = champions.participations.create(team_id: Team.find_by_name("Manchester City"))
 manucl      = champions.participations.create(team_id: Team.find_by_name("Manchester United"))
 
+puts "Added UEFACL teams"
+
 # ======= Weeks =============
 premier.number_of_weeks.times do |week|
   premier.weeks.create(week_number: week+1)
 end
+
+puts "Added weeks"
 
 # ======== Matches ==============
 premier.weeks.find_by_week_number(36).matches.create(home_team: westbrom, away_team: wigan, :match_time => Time.new(2013, 5, 4, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: westbrom.home_field, final_result: "A", home_score: 2, away_score: 3)
@@ -70,6 +82,8 @@ premier.weeks.find_by_week_number(36).matches.create(home_team: liverpool, away_
 premier.weeks.find_by_week_number(36).matches.create(home_team: manu, away_team: chelsea, :match_time => Time.new(2013, 5, 5, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manu.home_field, final_result: "A", home_score: 0, away_score: 1)
 premier.weeks.find_by_week_number(36).matches.create(home_team: sunderland, away_team: stoke, :match_time => Time.new(2013, 5, 6, 20, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: sunderland.home_field, final_result: "D", home_score: 1, away_score: 1)
 
+puts "Added Week 36"
+
 premier.weeks.find_by_week_number(37).matches.create(home_team: astonvilla, away_team: chelsea, :match_time => Time.new(2013, 5, 11, 12, 45, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: astonvilla.home_field)
 premier.weeks.find_by_week_number(37).matches.create(home_team: stoke, away_team: spurs, match_time: Time.new(2013,5,12, 13, 30, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: stoke.home_field)
 premier.weeks.find_by_week_number(37).matches.create(home_team: sunderland, away_team: sotton, match_time: Time.new(2013,5,12, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: sunderland.home_field)
@@ -80,6 +94,8 @@ premier.weeks.find_by_week_number(37).matches.create(home_team: everton, away_te
 premier.weeks.find_by_week_number(37).matches.create(home_team: manu, away_team: swansea, match_time: Time.new(2013,5,12, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manu.home_field)
 premier.weeks.find_by_week_number(37).matches.create(home_team: arsenal, away_team: wigan, match_time: Time.new(2013,5,14, 19, 45, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: arsenal.home_field)
 premier.weeks.find_by_week_number(37).matches.create(home_team: reading, away_team: manc, match_time: Time.new(2013,5,14, 20, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: reading.home_field)
+
+puts "Added Week 37"
 
 premier.weeks.find_by_week_number(38).matches.create(home_team: wigan, away_team: astonvilla, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: wigan.home_field)
 premier.weeks.find_by_week_number(38).matches.create(home_team: westham, away_team: reading, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: westham.home_field)
@@ -92,7 +108,7 @@ premier.weeks.find_by_week_number(38).matches.create(home_team: manc, away_team:
 premier.weeks.find_by_week_number(38).matches.create(home_team: liverpool, away_team: qpr, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: liverpool.home_field)
 premier.weeks.find_by_week_number(38).matches.create(home_team: chelsea, away_team: everton, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: chelsea.home_field)
 
-
+puts "Added Week 38"
 
 
 

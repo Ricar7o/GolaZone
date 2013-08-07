@@ -1,6 +1,11 @@
+- current_user.competitions.where(campaign_id: @campaign.id).first.picks.where(match_id: match).first
+
 .row
   .small-12.columns
-    %h4= t("campaigns.week") + " #" + week.week_number.to_s
+    %h4
+      = t("campaigns.week") + " #" + week.week_number.to_s
+      - if allow_picks
+        %span.label.radius=t("campaigns.make_predictions")
     %h6.subheader= week.earliest_match.strftime("%a %b %d, %Y") + " - " + week.latest_match.strftime("%a %b %d, %Y")
 
 .row
@@ -18,20 +23,20 @@
         - week.matches.order(:match_time).each do |match|
           - home_tm = Team.find(match.home_team_id)
           - away_tm = Team.find(match.away_team_id)
-          %tr
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''}"}
+          %tr{id: match.id}
+            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''}", :"data-match-id" => match.id, :"data-result" => "H", id: "#{match.id}H"}
               = image_tag home_tm.logo, width: "50em"
               %br
-              = home_tm.name
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{ show_results ? 'score_box' : ''}"}
+              %span= home_tm.name
+            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{ show_results ? 'score_box' : ''}", :"data-match-id" => match.id, :"data-result" => "D", id: "#{match.id}D"}
               - if show_results
                 = match.home_score.to_s + "-" + match.away_score.to_s
               - else
-                = "vs."
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''}"}
+                %span= "vs."
+            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''}", :"data-match-id" => match.id, :"data-result" => "A", id: "#{match.id}A"}
               = image_tag away_tm.logo, width: "50em"
               %br
-              = away_tm.name
+              %span= away_tm.name
 
 / .row
 /   .small-12.columns

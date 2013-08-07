@@ -1,15 +1,30 @@
-ajaxPost = function (d) {
+calculate_weeks_left = function (d) {
   $.ajax({
     type: "POST",
-    url: "/campaigns/calculate_weeks_left",
-    data: {tournament_id: d},
+    url: "/tournaments/" + d + "/calculate_weeks_left",
+    // data: {tournament_id: d},
     success: function(response) {
-      $('#matchdays').css("display", "block");
+      $("#matchdays").css("display", "block");
       maximum = $.trim(response)
-      $('#matchdays_for_tournament input').attr({min: "1", max: maximum}).focus();
+      $("#matchdays_for_tournament input").attr({min: "1", max: maximum}).focus();
     },
     error: function(response) {
         alert('Server error: ' + response); // This is the part that handles the error being down
+    }
+  });
+}
+
+make_pick = function(campaign, match, result) {
+  $("tr#" + match + " td").removeClass("picked_match");
+  $.ajax({
+    type: "POST",
+    url: "/campaigns/" + campaign + "/picks",
+    data: {match_id: match, selected_result: result},
+    success: function(response){
+      $("#" + match + result).addClass("picked_match");
+    },
+    error: function(response){
+      alert("Error: " + response);
     }
   });
 }
@@ -20,10 +35,12 @@ $(document).ready(function() {
   $('select.tournament_selection').change(function() {
     // Grab the selected tournament and season
     t = $('select.tournament_selection option:selected').val();
-    // Split the info from the select into tournament (p0) and season (p1)
-    // d = {tournament: t[0], season: t[1]};
-    // $('#matchdays_for_tournament').load('/campaigns/calculate_weeks_left', d);
-
-    ajaxPost(t);
+    calculate_weeks_left(t);
   });
+
+  $(".pickable").click(function() {
+    campaign_id = window.location.pathname.replace("/campaigns/","");
+    make_pick(campaign_id, $(this).attr("data-match-id"), $(this).attr("data-result"));
+  });
+
 });
