@@ -37,25 +37,3 @@
               = image_tag away_tm.logo, width: "50em"
               %br
               %span= away_tm.name
-
-/ .row
-/   .small-12.columns
-/     %table
-/       %thead
-/         %tr
-/           %th.text-center{colspan: 2}= t("matches.home")
-/           %th.text-center= "X"
-/           %th.text-center{colspan: 2}= t("matches.away")
-/       %tbody
-/         - week.matches.order(:match_time).each do |match|
-/           - home_tm = Team.find(match.home_team_id)
-/           - away_tm = Team.find(match.away_team_id)
-/           %tr
-/             %td.text-right= home_tm.name
-/             %td.team_logo
-/               = image_tag home_tm.logo, width: "100%"
-/             %td.text-center
-/               %small= "vs."
-/             %td.team_logo
-/               = image_tag away_tm.logo, width: "100%"
-/             %td= away_tm.name
