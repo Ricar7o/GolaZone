@@ -1,16 +1,16 @@
-- current_user.competitions.where(campaign_id: @campaign.id).first.picks.where(match_id: match).first
+/- current_user.competitions.where(campaign_id: @campaign.id).first.picks.where(match_id: match).first
 
 .row
   .small-12.columns
-    %h4
+    %h4.text-center
       = t("campaigns.week") + " #" + week.week_number.to_s
       - if allow_picks
         %span.label.radius=t("campaigns.make_predictions")
-    %h6.subheader= week.earliest_match.strftime("%a %b %d, %Y") + " - " + week.latest_match.strftime("%a %b %d, %Y")
+    %h6.subheader.text-center= week.earliest_match.strftime("%a %b %d, %Y") + " - " + week.latest_match.strftime("%a %b %d, %Y")
 
 .row
   .small-12.columns
-    %table
+    %table{width: "100%"}
       %thead
         %tr
           %th.text-center.team_picker= t("matches.home")
