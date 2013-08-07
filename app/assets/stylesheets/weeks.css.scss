@@ -2,11 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "foundation/components/global";
+
 .pickable {
-  border: 2px solid rgba(0,150,0,0);
+  // border: 2px solid rgba(0,150,0,0);
 
   &:hover {
-    border: 2px solid rgba(0,150,0,0.5);
+    // border: 2px solid rgba(0,150,0,0.5);
+    box-shadow: 0 0 0 2px $primary-color;
     cursor: pointer;
   }
 }
@@ -26,5 +29,5 @@
 }
 
 .picked_match {
-  background-color: rgba(0,150,0,0.5)
+  background-color: lighten($primary-color, 33%);
 }

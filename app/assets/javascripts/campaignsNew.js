@@ -15,16 +15,19 @@ calculate_weeks_left = function (d) {
 }
 
 make_pick = function(campaign, match, result) {
+  same_pick = $("#" + match + result).hasClass("picked_match");
   $("tr#" + match + " td").removeClass("picked_match");
   $.ajax({
     type: "POST",
     url: "/campaigns/" + campaign + "/picks",
     data: {match_id: match, selected_result: result},
     success: function(response){
-      $("#" + match + result).addClass("picked_match");
+      if(!same_pick) {
+        $("#" + match + result).addClass("picked_match");
+      }
     },
     error: function(response){
-      alert("Error: " + response);
+      console.log("Error when trying to pick " + result + "in match " + match + "in campaign " + campaign);
     }
   });
 }
