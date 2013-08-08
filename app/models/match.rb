@@ -10,41 +10,12 @@ class Match < ActiveRecord::Base
   validates :home_team_id, uniqueness: { scope: [:away_team_id, :match_time] }
 
   after_save :update_week
-  # after_save :update_latest_match_in_week, :update_earliest_match_in_week, :update_reschedules_in_week
 
   def update_week
-    update_latest_match_in_week
-    update_earliest_match_in_week
-    update_reschedules_in_week
+    week.update_latest_match(self)
+    week.update_earliest_match(self)
+    week.update_reschedules(self)
     week.save
-  end
-
-
-  private
-
-  # After every match is created, verify if this is the latest match of the week.
-  # If it is, update the weeks table with this match's time.
-  # Only do this if this is a regularly scheduled match and hasn't been rescheduled.
-  def update_latest_match_in_week
-    if !self.rescheduled && self.match_time > week.latest_match
-      week.latest_match = match_time
-      # week.save
-    end
-  end
-
-  # After every match is created, verify if this is the earliest match of the week.
-  # If it is, update the weeks table with this match's time.
-  # Only do this if this is a regularly scheduled match and hasn't been rescheduled.
-  def update_earliest_match_in_week
-    if !self.rescheduled && self.match_time < week.earliest_match
-      week.earliest_match = match_time
-      # week.save
-    end
-  end
-
-  def update_reschedules_in_week
-    week.rescheduled_matches = week.rescheduled_matches || self.rescheduled
-    # week.save
   end
 
 end
