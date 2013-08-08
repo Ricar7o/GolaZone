@@ -5,28 +5,24 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development do
+group :development, :test do
   gem 'sqlite3'
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'debugger'
+  gem 'better_errors'
 end
 
 group :production do
   gem 'pg'
 end
 
-group :test do
-  gem 'rspec-rails'
-end
-
 gem 'haml'
-gem 'better_errors'
 gem 'devise'
 gem 'binding_of_caller'
 gem 'hirb'
-gem 'pry'
 gem 'cancan'
-gem 'debugger'
 gem 'zeus'
 gem 'timecop'
 gem 'httparty'
@@ -50,18 +46,3 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-gem 'debugger'
