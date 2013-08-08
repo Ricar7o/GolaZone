@@ -29,6 +29,8 @@ gem 'cancan'
 gem 'debugger'
 gem 'zeus'
 gem 'timecop'
+gem 'httparty'
+gem 'delayed_job_active_record'
 
 # Gems used only for assets and not required
 # in production environments by default.
