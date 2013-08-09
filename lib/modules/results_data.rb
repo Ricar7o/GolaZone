@@ -7,37 +7,43 @@ module ResultsData
 
   class Results
 
-    # This gets the winner of each game of a tournament by evaluation whether it did or did not go to penalty kicks and then deciding the winner based the number of fulltime goals or penalty kick goals. In all cases, [0] is the home team, while [1] is the away team.  The total_pens exists because the JSON always returns the score of the penalty kicks, even if there weren't any.  So we have to ask if there are any and then we decide if it should decide the score of the game.
-
-    # These are the variable options for the API request.  
-
-      COMPETITION = "league-cup"
-      API_KEY = "free"
-      YEAR_NAME = "2012/2013"
-      FROM_DATE = "2012-12-11"
-      TO_DATE = "2012-12-19"
-      TIMEZONE = "Europe/London"
-      LIMIT = 10
-
+    # This gets the matches of the day, turns them into a JSON object, loops over the object and assigns specific match data to variables.  It then gets the results of those matches by making a request of the get_results method using the variables above.  
 
     def self.get_matches
       # todays_matches = Match.where("DATE(match_time) = ?", Date.today)
-      # todays_matches = Match.where("DATE(match_time) = ?", '2013-05-12')
-      # matches_object = todays_matches.to_json
-      # Get the home team, away team competition and time
-      # Put those objects in a data structure
-      # Loop through those objects and make a get_results request
-      # Delay that request until three hours after match time
+      todays_matches = Match.where("DATE(match_time) = ?", '2013-05-12')
+      matches_object = todays_matches.to_json
+
+      JSON.parse(matches_object).each do |mo|
+        @homeTeam = Team.where(id: "#{mo["home_team_id"]}").first.name
+        @matchTime = Time.parse("#{mo["match_time"]}")
+        @matchTournament = Match.find("#{mo["id"]}").week.tournament.name
+        @matchSeason = Match.find("#{mo["id"]}").week.tournament.season  
+        
+        Results.get_results
+
+        # This requests the results data, but uses Delayed Worker to delay the action to run at a later time.  In this cae, the delayed time is 10800 seconds (three hours) in the future.
+        ## Results.delay(run_at: @matchTime.since(10800)).get_results
+      
+      end
     end
 
-    def self.get_results
+    # This gets the winner of each game of a tournament by evaluation whether it did or did not go to penalty kicks and then deciding the winner based the number of fulltime goals or penalty kick goals. In all cases, [0] is the home team, while [1] is the away team.  The total_pens exists because the JSON always returns the score of the penalty kicks, even if there weren't any.  So we have to ask if there are any and then we decide if it should decide the score of the game.
 
+    def self.get_results
       # This is the call to the API
 
-      league_response= HTTParty.get("http://api.statsfc.com/#{COMPETITION}/results.json?key=#{API_KEY}&year=#{YEAR_NAME}&from=#{FROM_DATE}&to=#{TO_DATE}&timezone=#{TIMEZONE}&limit=#{LIMIT}")
+      competition = @matchTournament.downcase.strip.gsub(' ', '-')
+      api_key = "free"
+      year_name = @matchSeason
+      from_date = @matchTime.strftime("%Y-%m-%d")
+      to_date = (@matchTime + (24*60*60)).strftime("%Y-%m-%d")
+      timezone = "Europe/London"
+      team_name = @homeTeam.downcase.strip.gsub(' ', '-')
+
+      league_response= HTTParty.get("http://api.statsfc.com/#{competition}/results.json?key=#{api_key}&year=#{year_name}&team=#{team_name}&from=#{from_date}&to=#{to_date}&timezone=#{timezone}")
 
       league_response.each do |item|
-
         home_team = item["home"]
         away_team = item["away"]
         home_goals = item["fulltime"][0]

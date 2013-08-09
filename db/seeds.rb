@@ -16,9 +16,9 @@ m.update_attribute(:encrypted_password, "$2a$10$KYAleurGyaNoVR.W/lBfWumrwAkMGHlf
 puts "Added users"
 
 # ======= Tournaments ==========
-premier = Tournament.create(name: "Premier League", organizer: "FA", number_of_weeks: 38, sport: "Football", competition_style: "Round Robin", season: "2012-2013", country: "England")
+premier = Tournament.create(name: "Premier League", organizer: "FA", number_of_weeks: 38, sport: "Football", competition_style: "Round Robin", season: "2012/2013", country: "England")
 
-champions = Tournament.create(name: "Champions League", organizer: "UEFA", number_of_weeks: 13, sport: "Football", competition_style: "Hybrid", season: "2012-2013", country: "Europe")
+champions = Tournament.create(name: "Champions League", organizer: "UEFA", number_of_weeks: 13, sport: "Football", competition_style: "Hybrid", season: "2012/2013", country: "Europe")
 
 puts "Added tournaments"
 
