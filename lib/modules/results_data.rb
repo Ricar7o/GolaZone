@@ -1,6 +1,7 @@
 module ResultsData
 
   require 'httparty'
+  require 'json'
 
   # This gets the results of a tournament's games for a specified period of time.  
 
@@ -20,9 +21,10 @@ module ResultsData
 
 
     def self.get_matches
-      todays_matches = Match.where("DATE(match_time) = ?", Date.today)
-      # Get the matches from the day
-      # Get the teams, competition and time
+      # todays_matches = Match.where("DATE(match_time) = ?", Date.today)
+      # todays_matches = Match.where("DATE(match_time) = ?", '2013-05-12')
+      # matches_object = todays_matches.to_json
+      # Get the home team, away team competition and time
       # Put those objects in a data structure
       # Loop through those objects and make a get_results request
       # Delay that request until three hours after match time
