@@ -42,7 +42,7 @@ GolaZone::Application.configure do
   # Use Timecop.travel to start at that time and keep moving ahead in time
   config.after_initialize do
     # Set Time.now to May 10, 2013 0:00:00 AM
-    t = Time.local(2013, 5, 10)
+    t = Time.local(2013, 5, 12, 23, 0, 0)
     Timecop.freeze(t)
   end
 end

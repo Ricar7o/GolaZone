@@ -19,27 +19,27 @@ module ResultsData
         @matchTime = Time.parse("#{mo["match_time"]}")
         @matchTournament = Match.find("#{mo["id"]}").week.tournament.name
         @matchSeason = Match.find("#{mo["id"]}").week.tournament.season  
-        
-        Results.get_results
 
+        # Results.get_results(@homeTeam, @matchTime, @matchTournament, @matchSeason)
+        
         # This requests the results data, but uses Delayed Worker to delay the action to run at a later time.  In this cae, the delayed time is 10800 seconds (three hours) in the future.
-        ## Results.delay(run_at: @matchTime.since(10800)).get_results
-      
+        Results.delay(run_at: @matchTime.since(10800)).get_results(@homeTeam, @matchTime, @matchTournament, @matchSeason)
+
       end
     end
 
     # This gets the winner of each game of a tournament by evaluation whether it did or did not go to penalty kicks and then deciding the winner based the number of fulltime goals or penalty kick goals. In all cases, [0] is the home team, while [1] is the away team.  The total_pens exists because the JSON always returns the score of the penalty kicks, even if there weren't any.  So we have to ask if there are any and then we decide if it should decide the score of the game.
 
-    def self.get_results
+    def self.get_results(team, time, tournament, season)
       # This is the call to the API
 
-      competition = @matchTournament.downcase.strip.gsub(' ', '-')
+      competition = tournament.downcase.strip.gsub(' ', '-')
       api_key = "free"
-      year_name = @matchSeason
-      from_date = @matchTime.strftime("%Y-%m-%d")
-      to_date = (@matchTime + (24*60*60)).strftime("%Y-%m-%d")
+      year_name = season
+      from_date = time.strftime("%Y-%m-%d")
+      to_date = (time + (24*60*60)).strftime("%Y-%m-%d")
       timezone = "Europe/London"
-      team_name = @homeTeam.downcase.strip.gsub(' ', '-')
+      team_name = team.downcase.strip.gsub(' ', '-')
 
       league_response= HTTParty.get("http://api.statsfc.com/#{competition}/results.json?key=#{api_key}&year=#{year_name}&team=#{team_name}&from=#{from_date}&to=#{to_date}&timezone=#{timezone}")
 
@@ -68,11 +68,14 @@ module ResultsData
         else
           final_result = "Error - no result found."
         end
-
-        puts "#{item["competition"]}: #{item["date"]}"
-        puts "#{home_team} vs. #{away_team}"
-        puts "Result: #{final_result}"
-        
+        home_team_data = Team.where(name: home_team).first.id
+        away_team_data = Team.where(name: away_team).first.id
+        match_time_data = (item["date"]).to_time
+        match_to_database = Match.where(home_team_id: home_team_data, away_team_id: away_team_data, match_time: match_time_data).first
+        match_to_database[:home_score] = home_goals
+        match_to_database[:away_score] = away_goals
+        match_to_database[:final_result] = final_result
+        match_to_database.save  
       end
     end
 
