@@ -1,3 +1,4 @@
+/ Week view
 .row
   .small-12.columns
     %h4.text-center
@@ -6,7 +7,6 @@
         %span.label.radius=t("campaigns.make_predictions")
     %h6.subheader.text-center= week.earliest_match.strftime("%a %b %d, %Y") + " - " + week.latest_match.strftime("%a %b %d, %Y")
 
-.row
   .small-12.columns
     %table{width: "100%"}
       %thead

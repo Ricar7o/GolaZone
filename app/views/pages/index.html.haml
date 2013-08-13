@@ -1,6 +1,17 @@
-.row
-  -if !current_user.present?
-    .small-8.small-centered.large-4.large-centered.alert
-      %button.close{type: "button", :'data-dismiss' => "alert"} Please log in or create an account.   &times;
-  -else
-    %p= "This is the pages index, " + current_user.first_name
+/ Index (pages) view
+-if !current_user.present?
+  .row
+    .small-12.large-6.large-centered.columns.text-center
+      .alert-box.radius{:'data-alert' => ''}
+        = t("alerts.signin")
+        %a{href: "#", class: "close"} &times;
+- else
+  .row#pending_invitations
+    .small-12.large-3.push-9.columns
+      - unless @invitations.blank?
+        = render partial: "invitations/pending"
+
+  .row#competitions_list
+    .small-12.large-3.push-9.columns
+      - unless @competitions.blank?
+        = render partial: "competitions/list"

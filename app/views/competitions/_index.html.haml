@@ -1,0 +1,20 @@
+/ Competitors view
+.small-12.large-12.columns
+  %h6= t("campaigns.competitions.in_this_campaign")
+.small-12.large-12.columns
+  %ul.inline-list
+    - @campaign.users.order(:first_name).each do |user|
+      %li.subheader
+        %span.has-tip{title: user.email, :"data-tooltip"  => '', :"data-options" => "disable-for-touch:true"}
+          %i.general.foundicon-smiley.avatar_small
+          = user.first_name
+    - @campaign.invitations.order(:to_name).each do |invite|
+      %li.subheader
+        %span.has-tip{title: invite.to_email, :"data-tooltip"  => '', :"data-options" => "disable-for-touch:true"}
+          %i.general.foundicon-clock.avatar_small.muted
+          = invite.to_name
+    - if @user_competing
+      %li
+        %a{:href => "#", class: "invite"}
+          %i.general.foundicon-plus
+          %span{:"data-replace-text" => t("campaigns.competitions.collapse")}= t("user_mailer.campaign_invitation.invite")

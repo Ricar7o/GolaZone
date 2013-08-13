@@ -13,6 +13,8 @@ es-MX:
       title: "Noticias"
     sports:
       title: "Deportes"
+  alerts:
+    signin: "Por favor ingrese a su cuenta o registre una nueva."
   user:
     profile: Perfil
     settings: Ajustes
@@ -25,6 +27,7 @@ es-MX:
     current_long: "Contreseña actual"
     leave_blank: "(deje en blanco si desea conservar la misma)"
     skip: " (omitir si no cambió)"
+    name: "Nombre"
     first_name: "Primer nombre"
     last_name: "Apellido"
     username: "Usuario"
@@ -33,6 +36,25 @@ es-MX:
   general:
     submit: "Submit"
     cancel: "Cancel"
+
+  # ==========================================
+  #          Mailer translations
+  # ==========================================
+
+  user_mailer:
+    welcome_email:
+      subject:
+      greeting:
+      body:
+    campaign_invitation:
+      subject: "%{from} te ha invitado a jugar una campaña"
+      greeting: "Hola %{to_name},"
+      invitation: "%{from} te ha invitado a participar en %{campaign} en GolaZone."
+      join: "Para participar, por favor haz clic en la liga de abajo."
+      team: "- El equipo de GolaZone"
+      message: "Mensaje"
+      invite: "Invitar"
+      inviting: "Invitando..."
 
   # ==========================================
   #          Format translations

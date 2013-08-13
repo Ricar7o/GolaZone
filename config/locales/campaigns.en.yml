@@ -30,3 +30,8 @@ en:
     last_matchday: "Last matchday"
     current_matchday: "Current matchday"
     make_predictions: "Make your picks"
+    pending_invitations: "Pending invitations"
+    competitions:
+        in_this_campaign: "In this campaign"
+        collapse: "Collapse"
+        competing_in: "Competing in"

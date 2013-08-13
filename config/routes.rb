@@ -16,6 +16,10 @@ GolaZone::Application.routes.draw do
   resources :pages
   resources :campaigns do
     resources :picks
+    resources :invitations, only: [:create, :destroy] do
+      post "accept"
+    end
+    resources :competitions, only: [:create]
   end
 
   resources :tournaments do

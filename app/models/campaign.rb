@@ -3,9 +3,10 @@ class Campaign < ActiveRecord::Base
 
   attr_accessor :allow_draw
 
-  has_many  :competitions
-  has_many  :users, through: :competitions
+  has_many    :competitions
+  has_many    :users, through: :competitions
   belongs_to  :tournament
+  has_many    :invitations
 
   validates :name, :number_of_matchdays, :win_points, :lose_points, :contest_type, presence: true
 
