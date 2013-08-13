@@ -13,6 +13,8 @@ en:
       title: "News"
     sports:
       title: Sports
+  alerts:
+    signin: "Please sign in or create an account."
   user:
     profile: Profile
     settings: Settings
@@ -25,6 +27,7 @@ en:
     current_long: "Current password"
     leave_blank: "(leave blank if you want to keep the same)"
     skip: " (skip if unchanged)"
+    name: "Name"
     first_name: "First name"
     last_name: "Last name"
     username: "Username"
@@ -39,5 +42,20 @@ en:
 
 
   # ==========================================
-  #          Format translations
+  #          Mailer translations
   # ==========================================
+
+  user_mailer:
+    welcome_email:
+      subject:
+      greeting:
+      body:
+    campaign_invitation:
+      subject: "%{from} has invited you play a campaign"
+      greeting: "Hi %{to_name},"
+      invitation: "%{from} has invited you to play in %{campaign} at GolaZone."
+      join: "To join, please click on the link below."
+      team: "- The GolaZone team"
+      message: "Message"
+      invite: "Invite"
+      inviting: "Inviting..."

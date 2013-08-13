@@ -1,0 +1,27 @@
+.row
+  .small-12.small-centered.large-6.large-centered.columns.text-center
+    %h2= t("devise.passwords.change_password")
+
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      = f.hidden_field :reset_password_token
+
+      .row.collapse
+        .small-3.medium-3.large-3.columns
+          %span{class: "prefix radius"}= t("devise.passwords.new_password")
+        .small-9.medium-9.large-9.columns.left
+          = f.password_field :password, autofocus: true, placeholder: t("devise.passwords.new_password")
+
+      .row.collapse
+        .small-3.medium-3.large-3.columns
+          %span{class: "prefix radius"}= t("user.confirm")
+        .small-9.medium-9.large-9.columns.left
+          = f.password_field :password_confirmation, placeholder: t("user.confirm_password")
+
+      .row
+        .small-12.columns.text-center
+          = f.submit t("devise.passwords.change_password"), class: "button"
+
+      .row
+        .small-12.columns.text-center
+          = render "devise/shared/links"

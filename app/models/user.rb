@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_many  :competitions
   has_many  :campaigns, through: :competitions
+  has_many  :invitations
 
   validates :email, :first_name, :last_name, :username, presence: true
   validates :username, :format => { :with => /^[0-9a-zA-Z]*$/, on: :create }

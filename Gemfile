@@ -9,6 +9,7 @@ group :development do
   gem 'sqlite3'
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'mailcatcher'
 end
 
 group :production do

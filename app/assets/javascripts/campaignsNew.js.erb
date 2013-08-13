@@ -1,0 +1,285 @@
+// Calculates the number of weeks left in a particular tournament
+//
+// d - the Integer ID of the tournament that was selected
+//
+// Makes the <input> element appear on the screen with the max amount set up.
+calculate_weeks_left = function (d) {
+  $.ajax({
+    type: "POST",
+    url: "/tournaments/" + d + "/calculate_weeks_left",
+    // data: {tournament_id: d},
+    success: function(response) {
+      // Make the <div> for matchdays appear again in the page. It had display:none before
+      $("#matchdays").css("display", "block");
+      // The response was just the max number of available weeks
+      maximum = $.trim(response)
+      // Make sure the number input can't receive numbers higher than max and focus it.
+      $("#matchdays_for_tournament input").attr({min: "1", max: maximum}).focus();
+    },
+    error: function(response) {
+        console.log('Server error: ' + response);
+    }
+  });
+}
+
+// Make an Ajax POST to save the user's pick for a particular match
+//
+// campaign - the Integer ID of the campaign
+// match - the Integer ID of the match
+// result - the selected outcome of the match. 'H' for home team, 'D' for draw, 'A' for away team.
+//
+// In the end it paints the <td> of the selected result by adding a class to it.
+make_pick = function(campaign, match, result) {
+  // Verify if the user clicked on the same result
+  same_pick = $("#" + match + result).hasClass("picked_match");
+  // Remove the picked_match class from all the <td>'s in the row
+  $("tr#" + match + " td").removeClass("picked_match");
+  $.ajax({
+    type: "POST",
+    url: "/campaigns/" + campaign + "/picks",
+    data: {match_id: match, selected_result: result},
+    success: function(response){
+      // Paint the cell only if the user selected something different.
+      if(!same_pick) {
+        $("#" + match + result).addClass("picked_match");
+      }
+    },
+    error: function(response){
+      console.log("Error when trying to pick " + result + "in match " + match + "in campaign " + campaign);
+    }
+  });
+}
+
+// Make an Ajax POST to save the user's pick for a particular match
+//
+// campaign - the Integer ID of the campaign
+// invitation - the invitation object serialized from the form (contains name, email and message)
+//
+// In the end it paints the <td> of the selected result by adding a class to it.
+invite_friend = function(campaign, invitation) {
+  $.ajax({
+    type: "POST",
+    url: "/campaigns/" + campaign + "/invitations",
+    data: invitation,
+    success: function(response){
+      $("#competitors").html(response);
+      $("#invitation_to_name").val("");
+      $("#invitation_to_email").val("");
+      $("#invitation_message").val("");
+      $("#invitations").hide();
+      clear_invitation_fields();
+      $(".invite").click(show_hide_invitation_box);
+    },
+    error: function(response){
+      alert(response.responseText);
+    }
+  });
+}
+// ===========================
+// Grabs the campaign id from the pathname, the URL field
+function get_campaign_from_url() {
+  return window.location.pathname.replace("/campaigns/","");
+}
+
+// Removes text and formats of the textfields in the invitations box
+function clear_invitation_fields() {
+  $("#invitation_to_name").val("");
+  $("#invitation_to_email").val("");
+  $("#invitation_message").val("");
+  clear_validation($("#invitation_to_name"));
+  clear_validation($("#invitation_to_email"));
+}
+
+// Changes the plus/minus icon to the opposite value
+//
+// element - the icon element
+//
+// Returns direction of change (true for a change to positive)
+function toggle_plus_minus(element) {
+  if ($(element).hasClass("foundicon-plus")) {
+    $(element).removeClass("foundicon-plus");
+    $(element).addClass("foundicon-minus");
+    return false;
+  }
+  else {
+    $(element).removeClass("foundicon-minus");
+    $(element).addClass("foundicon-plus");
+    return true;
+  }
+}
+
+function replace_text_of(element) {
+  original_text = $(element).text();
+  replace_text = $(element).attr("data-replace-text");
+  $(element).text(replace_text);
+  $(element).attr("data-replace-text", original_text);
+}
+
+// Makes the invitation form appear and disappear
+function show_hide_invitation_box() {
+  // Show
+  if ($("#invitations").css("display") == "none") {
+    $("#invitations").css("display", "block");
+    $("#invitations").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 100);
+    $("#invitation_to_name").focus();
+  }
+  // Hide
+  else {
+    $("#invitations").animate({opacity: 0, visibility: "hidden"},100, function() {
+      $("#invitations").css("display", "none");
+    });
+  }
+}
+
+// Variable used to execute a function after an amount of time
+// Usage:
+//  $('input').keyup(function() {
+//    delay(function(){
+//      alert('Time elapsed!');
+//    }, 1000 );
+//  });
+// From: http://stackoverflow.com/users/5445/cms
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+// Changes the class of the element from invalid to valid and viceversa
+//
+// element - the selected jQuery element
+// value - the Boolean that determines how to change the class
+//   - false: changes to invalid
+//   - true: changes to valid
+//
+// Returns nothing
+function switch_validity(element, value) {
+  if (value) {
+    $(element).addClass("valid");
+    $(element).removeClass("invalid");
+  }
+  else {
+    $(element).addClass("invalid");
+    $(element).removeClass("valid");
+  }
+}
+
+// Removes the "valid" and "invalid" classes from the element
+//
+// element - the selected jQuery element
+//
+// Returns nothing
+function clear_validation(element) {
+    $(element).removeClass("invalid");
+    $(element).removeClass("valid");
+}
+
+// Validate if the provided html element has text
+//
+// element - the element selected with jQuery
+// min_chars - the Integer value of the minimum characters to be considered valid
+//  - if no argument is passed, the minimum will be 1
+//
+// Applies the "valid" or "invalid" class to the field so that it glows accordingly
+// Returns true if element is valid, false if invalid
+function validate_text_field(element, min_chars) {
+  min_chars = min_chars || 1; // if the argument is null, 0 or undefined, set it to 1
+  if ($(element).val().length < min_chars) {
+    switch_validity($(element), false);
+    return false;
+  }
+  else {
+    switch_validity($(element), true);
+    return true;
+  }
+}
+
+// Determines if an email is formated correctly as an email address
+//
+// email - the String email address
+//
+// Returns true if the email is valid
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+// Validate if the provided password field is in the right format
+//
+// element - the password element selected with jQuery
+//
+// Applies the "valid" class to the field so that it glows to confirm
+function validate_email_field(element) {
+  switch_validity($(element), isEmail($(element).val()));
+  return isEmail($(element).val());
+}
+
+// ===============================================
+// ======== End of functions and variables =======
+// ===============================================
+
+$(document).ready(function() {
+
+  // When a tournament is selected, show a new selection box with the number of matchdays available
+  $('select.tournament_selection').change(function() {
+    // Grab the selected tournament and season
+    t = $('select.tournament_selection option:selected').val();
+    calculate_weeks_left(t);
+  });
+
+  // This tracks clicks on the Next matchday matches to store picks
+  $(".pickable").click(function() {
+    // Grab the campaign id from the url bar
+    campaign_id = get_campaign_from_url();
+    make_pick(campaign_id, $(this).attr("data-match-id"), $(this).attr("data-result"));
+  });
+
+  // This makes the friend invitation form appear on the screen
+  $(".invite").click(function() {
+    show_hide_invitation_box();
+    clear_invitation_fields();
+    toggle_plus_minus($(".invite i"));
+    replace_text_of($(".invite span"));
+  });
+
+  // This is the listener for the Invite button to create the invitations.
+  // Disables the button with pre-defined text in multiple languages, sends
+  // the data
+  $("#invite_button").click(function(event) {
+    event.preventDefault();
+    button_value = $("#invite_button").val();
+    button_disabled_value = $("#invite_button").attr("data-disable-with");
+    $("#invite_button").val(button_disabled_value);
+    $("#invite_button").attr("disabled", "disabled");
+    campaign_id = get_campaign_from_url();
+    invitation = $("#invitation").serialize();
+    invite_friend(campaign_id, invitation);
+    $("#invite_button").val(button_value);
+    $("#invite_button").removeAttr("disabled");
+  });
+
+  $("#invitation_to_name").keyup(function() {
+    validate_text_field($("#invitation_to_name"));
+  });
+
+  $("#invitation_to_email").keyup(function() {
+    if (validate_text_field($("#invitation_to_name")) && validate_email_field($("#invitation_to_email"))) {
+      $("#invite_button").removeAttr("disabled");
+    }
+    else {
+      $("#invite_button").attr("disabled", "disabled");
+    }
+  });
+
+  $("#invitation").change(function() {
+    if (validate_text_field($("#invitation_to_name")) && validate_email_field($("#invitation_to_email"))) {
+      $("#invite_button").removeAttr("disabled");
+    }
+    else {
+      $("#invite_button").attr("disabled", "disabled");
+    }
+  });
+
+});
