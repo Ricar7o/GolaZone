@@ -68,6 +68,7 @@ module ResultsData
         else
           final_result = "Error - no result found."
         end
+        
         home_team_data = Team.where(name: home_team).first.id
         away_team_data = Team.where(name: away_team).first.id
         match_time_data = (item["date"]).to_time

@@ -4,7 +4,7 @@ namespace :fixtures do
 
   desc "Gets upcoming soccer fixtures"
   task :find => :environment do
-    puts FixturesData::Fixtures.get_fixtures
+    FixturesData::Fixtures.get_team
   end
 
   task :all => [:find]
