@@ -20,10 +20,17 @@ es-MX:
     mailer:
       confirmation_instructions:
         subject: "Instrucciones de Confirmación."
+        welcome: "Bienvenido %{email}!"
+        confirm: "Puede confirmar su correo electrónico a través del enlace de abajo:"
+        confirm_link: "Confirmar mi cuenta"
       reset_password_instructions:
         subject: "Instrucciones de reinicio de contraseña."
       unlock_instructions:
         subject: "Instrucciones de desbloqueo."
+        hello: "Hola %{email}!"
+        has_been_locked: "Su cuenta ha sido bloqueada debido a demasiados intentos fallidos de ingresar."
+        click_below: "Abra el enlace de abajo para desbloquear su cuenta:"
+        unlock_link: "Desbloquear mi cuenta"
     omniauth_callbacks:
       failure: "No se le pudo autorizar en %{kind} debido a \"%{reason}\"."
       success: "Exitosamente autorizado desde la cuenta %{kind}."
