@@ -23,11 +23,11 @@ champions = Tournament.create(name: "Champions League", organizer: "UEFA", numbe
 puts "Added tournaments"
 
 # ========== Campaigns ============
-soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round-robin", tournament_id: premier)
+# soccerist = Campaign.create(name: "First Soccerist", published: true, number_of_matchdays: 2, win_points: 3, lose_points: 0, draw_points: 1, contest_type: "Round-robin", tournament_id: premier)
 
-soccerite = Campaign.create(name: "First Soccerite", published: true, number_of_matchdays: 3, win_points: 5, lose_points: 1, draw_points: 2, contest_type: "Knockout", tournament_id: champions)
+# soccerite = Campaign.create(name: "First Soccerite", published: true, number_of_matchdays: 3, win_points: 5, lose_points: 1, draw_points: 2, contest_type: "Knockout", tournament_id: champions)
 
-puts "Added campaigns"
+# puts "Added campaigns"
 
 # ============= Teams ===========
 

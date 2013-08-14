@@ -13,21 +13,22 @@ group :development, :test do
   gem 'debugger'
   gem 'better_errors'
   gem 'mailcatcher'
+  gem 'binding_of_caller'
 end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
 end
 
 gem 'haml'
 gem 'devise'
-gem 'binding_of_caller'
-gem 'hirb'
-gem 'cancan'
-gem 'zeus'
-gem 'timecop'
 gem 'httparty'
 gem 'delayed_job_active_record'
+gem 'timecop'
+gem 'hirb'
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.
