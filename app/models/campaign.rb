@@ -16,12 +16,13 @@ class Campaign < ActiveRecord::Base
   #
   # Returns the leaderboard
   def generate_rankings(week_number)
+    # If week is in the future, don't give me answer
     self.competitions.each do |comp|
       # comp.picks - all picks by a user in a campaign
       # w = Week.where(week_number: week_number).first
       # w.latest_match
-      # get picks from matches that belong to a week before this one, and the match has already been played.
-      # comp.picks.includes(:match).where(match_id: Week.find(week_number).matches)
+      # get picks from matches that belong to the week, and the match has already been played.
+      Pick.count_correct(comp.picks.where(match_id: Week.find(week_number).matches))
     end
   end
 
