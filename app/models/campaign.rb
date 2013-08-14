@@ -10,26 +10,23 @@ class Campaign < ActiveRecord::Base
 
   validates :name, :number_of_matchdays, :win_points, :lose_points, :contest_type, presence: true
 
-  # Generates a leaderboard for the campaign up to week_number
+  # Generates the rankings for the campaign up to week_number
   #
   # week_number - the Integer number of the week
   #
   # Returns the leaderboard
-  def generate_week_leaderboard(week_number)
+  def generate_rankings(week_number)
     self.competitions.each do |comp|
       # comp.picks - all picks by a user in a campaign
       # w = Week.where(week_number: week_number).first
       # w.latest_match
       # get picks from matches that belong to a week before this one, and the match has already been played.
-
+      # comp.picks.includes(:match).where(match_id: Week.find(week_number).matches)
     end
   end
 
-  # Generates a leaderboard for the campaign up to now
-  #
-  # Returns the live leaderboard
-  def generate_live_leaderboard
-
+  def all_rankings_generated?(week_number)
+    Ranking.where(week_id: self.tournament.weeks.where(week_number: week_number).first.id, competition_id: Competition.where(campaign_id: self.id).pluck(:id)).count == self.competitions.count
   end
 
 end

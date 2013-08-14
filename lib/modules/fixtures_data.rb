@@ -1,8 +1,8 @@
 module FixturesData
-  
+
   require 'httparty'
 
-  # Lists all of the completed fixtures for a competition in the time-window selected.  
+  # Lists all of the completed fixtures for a competition in the time-window selected.
 
   class Fixtures
 
@@ -15,12 +15,12 @@ module FixturesData
         team_for_fixtures = team_to_run.downcase.strip.gsub(' ', '-')
         Fixtures.get_fixtures(team_for_fixtures)
       end
-    
+
     end
 
     def self.get_fixtures(team)
 
-    #   # These are the variable options for the API request.  
+    #   # These are the variable options for the API request.
 
       competition = "premier-league"
       api_key = "free"
@@ -40,7 +40,7 @@ module FixturesData
         away_team = item["away"]
         home_goals = item["fulltime"][0]
         away_goals = item["fulltime"][1]
-        home_pens = item["penalties"][0] 
+        home_pens = item["penalties"][0]
         away_pens = item["penalties"][1]
         total_pens = home_pens + away_pens
         home_win = "H"
@@ -65,7 +65,8 @@ module FixturesData
           counter -= 1
         else
           m = Match.create()
-          m.week_id = counter
+          # m.week_id = counter
+          m.week = Week.where(week_number: counter).first
           m.home_team_id = Team.where(name: home_team).first.id
           m.away_team_id = Team.where(name: away_team).first.id
           m.match_time = (item["date"]).to_time
@@ -79,9 +80,8 @@ module FixturesData
           m.venue = Team.where(name: home_team).first.home_field
           m.final_result = final_result
           m.save
-          sleep(1)
           counter -= 1
-        end 
+        end
       end
 
     end
@@ -96,7 +96,7 @@ module FixturesData
 
     def self.homeRegWin?(home_goals, away_goals)
       home_goals > away_goals
-    end  
+    end
 
     def self.awayRegWin?(home_goals, away_goals)
       home_goals < away_goals
@@ -114,8 +114,8 @@ module FixturesData
       home_pens < away_pens
     end
 
-  end 
-  
+  end
+
 end
 
 

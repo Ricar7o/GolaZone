@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714004657) do
+ActiveRecord::Schema.define(:version => 20130714004659) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(:version => 20130714004657) do
   end
 
   add_index "picks", ["competition_id", "match_id"], :name => "index_picks_on_competition_id_and_match_id", :unique => true
+
+  create_table "rankings", :force => true do |t|
+    t.integer  "competition_id"
+    t.integer  "week_id"
+    t.integer  "position"
+    t.integer  "score"
+    t.integer  "total"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "teams", :force => true do |t|
     t.string   "name"

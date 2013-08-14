@@ -3,6 +3,7 @@ class Week < ActiveRecord::Base
 
   belongs_to  :tournament
   has_many    :matches
+  has_many    :rankings
 
   validates :tournament_id, :week_number, presence: true
   validates :tournament_id, uniqueness: { scope: :week_number }
