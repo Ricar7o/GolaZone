@@ -1,11 +1,19 @@
+/ Campaign view
 .row
   .small-12.text-center
     %h1= @campaign.name
 
-.row
+
+  .small-12.large-3.columns
+    .row#competitors
+      = render partial: "competitions/index"
+
+    .row#invitations
+      = render partial: "invitations/new"
+
   .small-12.large-6.large-centered.columns
     %h2.text-center= t("campaigns.next_matchday")
-    = render partial: "weeks/show_week", locals: { week: @next_week, show_results: false, allow_picks: true }
+    = render partial: "weeks/show_week", locals: { week: @next_week, show_results: false, allow_picks: @user_competing }
 
 .row
   .small-12.large-6.large-centered.columns

@@ -1,0 +1,28 @@
+- route = "user_mailer.campaign_invitation."
+
+/ ===== Sample email =====
+
+-#  Hi Tom,
+-#  Your friend John has invited you to play in Office League at GolaZone.
+-#
+-#    Hey John, this is the awesome app that I told you about.
+-#    Create an account to play against everyone at the office.
+-#
+-#  In order to join, please click on the link below or copy it to your browser.
+-#
+-#  http://golazone.com/join&code=rCx7mT
+-#
+-#  The GolaZone team
+
+
+%p= t(route + "greeting", to_name: @invitation.to_name)
+%p= t(route + "invitation", from: @invitation.user.first_name, campaign: @invitation.campaign.name)
+- if !@invitation.message.blank?
+  %p
+    = t(route + "message") + ":"
+    %br
+    %blockquote
+      %em= @invitation.message
+%p= t(route + "join")
+%p= link_to "GolaZone: #{@invitation.campaign.name}", @invitation.campaign
+%p= t(route + "team")

@@ -1,0 +1,9 @@
+/ Pending invitations
+- unless @invitations.blank?
+  %ul.no-bullet
+    %h6= t("campaigns.pending_invitations")
+    - @invitations.each do |invitation|
+      %li
+        = link_to invitation.campaign.name, invitation.campaign
+        = link_to "<i class='general foundicon-checkmark'></i>".html_safe, campaign_invitation_accept_path(invitation.campaign, invitation.id), method: :post, remote: true,  class: "accept_invitation"
+        = link_to "<i class='general foundicon-remove'></i>".html_safe, campaign_invitation_path(invitation.campaign, invitation), method: :delete, remote: true, class: "reject_invitation"

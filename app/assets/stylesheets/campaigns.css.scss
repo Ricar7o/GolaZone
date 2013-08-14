@@ -1,3 +1,32 @@
 // Place all the styles related to the campaigns controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "foundation/components/global";
+
+.avatar_small {
+  color: darken($primary-color, 20%);
+}
+
+  .avatar_small.muted {
+    color: darken($secondary-color, 30%);
+  }
+
+#invitations {
+  display: none;
+  visibility: hidden;
+}
+
+input.valid {
+  border: 1px solid $success-color;
+  -webkit-box-shadow: 0 0 5px $success-color;
+  -moz-box-shadow: 0 0 5px $success-color;
+  box-shadow: 0 0 5px $success-color;
+}
+
+input.invalid {
+  border: 1px solid $alert-color;
+  -webkit-box-shadow: 0 0 5px $alert-color;
+  -moz-box-shadow: 0 0 5px $alert-color;
+  box-shadow: 0 0 5px $alert-color;
+}

@@ -1,0 +1,7 @@
+/ Competitions list
+- unless @competitions.blank?
+  %ul.no-bullet
+    %h6= t("campaigns.competitions.competing_in")
+    - @competitions.each do |competition|
+      %li
+        = link_to competition.campaign.name, competition.campaign

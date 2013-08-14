@@ -1,3 +1,13 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "foundation/components/global";
+
+.foundicon-checkmark {
+  color: $success-color;
+}
+
+.foundicon-remove {
+  color: $alert-color;
+}

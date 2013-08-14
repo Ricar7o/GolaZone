@@ -12,6 +12,7 @@ group :development, :test do
   gem 'pry'
   gem 'debugger'
   gem 'better_errors'
+  gem 'mailcatcher'
 end
 
 group :production do

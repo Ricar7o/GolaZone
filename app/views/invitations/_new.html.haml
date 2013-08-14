@@ -1,0 +1,7 @@
+/ Invitation view
+= form_for @invitation, url: campaign_invitations_path(@campaign), html: {class: "invite_friend", id: "invitation"} do |f|
+  .small-12.large-12.columns
+    = f.text_field :to_name, placeholder: t("user.name")
+    = f.email_field :to_email, placeholder: t("user.email")
+    = f.text_area :message, placeholder: t("user_mailer.campaign_invitation.message"), rows: 2
+    = f.submit t("user_mailer.campaign_invitation.invite"), class: "small button success radius", id: "invite_button", disable_with: t("user_mailer.campaign_invitation.inviting"), disabled: "disabled"
