@@ -1,0 +1,23 @@
+// Place all the styles related to the rankings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.leaderboard {
+  width: 100%;
+
+  th {
+    text-align: center;
+  }
+
+  .position {
+    text-align: center;
+  }
+
+  .competitor {
+    text-align: left;
+  }
+
+  .score, .total {
+    text-align: center;
+  }
+}

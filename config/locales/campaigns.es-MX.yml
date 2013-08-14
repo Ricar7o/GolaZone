@@ -35,3 +35,10 @@ es-MX:
         in_this_campaign: "En esta campaña"
         collapse: "Esconder"
         competing_in: "Compitiendo en"
+    rankings:
+        position: "Pos"
+        competitor: "Competidor"
+        this_week: "Esta semana"
+        score: "Puntos"
+        total: "Total"
+        standings: "Posiciones"

@@ -11,11 +11,21 @@
     .row#invitations
       = render partial: "invitations/new"
 
-  .small-12.large-6.large-centered.columns
+  .small-12.large-3.push-6.columns
+    .row
+      .small-12.columns
+        %h6.text-center= t("campaigns.rankings.this_week")
+        = render 'rankings/leaderboard', rankings: @rankings, type: "week"
+    .row
+      .small-12.columns
+        %h6.text-center= t("campaigns.rankings.standings")
+        = render 'rankings/leaderboard', rankings: @rankings, type: "total"
+
+  .small-12.large-6.pull-3.columns
     %h2.text-center= t("campaigns.next_matchday")
     = render partial: "weeks/show_week", locals: { week: @next_week, show_results: false, allow_picks: @user_competing }
 
 .row
   .small-12.large-6.large-centered.columns
     %h2.text-center= t("campaigns.last_matchday")
-    = render partial: "weeks/show_week", locals: { week: @current_week, show_results: true, allow_picks: false }
+    = render "weeks/show_week", week: @current_week, show_results: true, allow_picks: false

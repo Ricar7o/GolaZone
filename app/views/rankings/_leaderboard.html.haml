@@ -1,0 +1,21 @@
+- if rankings
+  %table.leaderboard
+    %thead
+      %tr
+        %th= #Position header
+        %th= t("campaigns.rankings.competitor")
+        - if type == "week"
+          %th= t("campaigns.rankings.score")
+        - else
+          %th= t("campaigns.rankings.total")
+    %tbody
+      - position = 0
+      - rankings.each do |ranking|
+        - position += 1
+        %tr
+          %td.position= position
+          %td.competitor= ranking.competition.user.first_name
+          - if type == "week"
+            %td.score= "+ #{ranking.score}"
+          - else
+            %td.total= ranking.total

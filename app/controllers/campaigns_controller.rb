@@ -22,6 +22,10 @@ class CampaignsController < ApplicationController
     @user_competing = !@campaign.competitions.where(user_id: current_user).blank?
     @picks = current_user.competitions.where(campaign_id: @campaign.id).first.picks if @user_competing
     @invitation = @campaign.invitations.build(user_id: current_user.id)
+    unless @campaign.all_rankings_generated?(@tournament.current_week) && Time.now > @current_week.latest_match
+      @campaign.generate_rankings(@tournament.current_week)
+    end
+    @rankings = Ranking.where(competition_id: @campaign.competitions)#.order("score DESC")
   end
 
 end

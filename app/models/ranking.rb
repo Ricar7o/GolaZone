@@ -6,6 +6,12 @@ class Ranking < ActiveRecord::Base
 
   validates     :competition_id, uniqueness: { scope: :week_id }
 
+  #
+  #
+  #
+  #
+  #
+  #
   def last_week_total(competition, week_number)
     if competition.rankings.where(week_id: competition.campaign.find_week_id(week_number-1)).first.nil?
       return 0

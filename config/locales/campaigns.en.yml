@@ -35,3 +35,10 @@ en:
         in_this_campaign: "In this campaign"
         collapse: "Collapse"
         competing_in: "Competing in"
+    rankings:
+        position: "Pos"
+        competitor: "Competitor"
+        this_week: "This week"
+        score: "Points"
+        total: "Total"
+        standings: "Standings"
