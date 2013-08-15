@@ -7,4 +7,7 @@ class PagesController < ApplicationController
     end
   end
 
+  def new
+  end
+
 end

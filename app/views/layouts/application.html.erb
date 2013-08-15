@@ -55,16 +55,25 @@
           <li class="divider"></li>
           <li><a href="#"><%= t 'navbar.sports.title' %></a></li>
           <li class="divider"></li>
+          <!-- ==== This conditional allows the user to move forward in time ==== -->
+          <% if user_signed_in? && current_user.email == "ricardo07@gmail.com" %>
+            <li><a href="/pages/new"><%= ">>" %></a></li>
+            <li class="divider"></li>
+          <% end %>
         </ul>
 
         <!-- Right Nav Section -->
         <ul class="right">
           <li class="divider hide-for-small"></li>
-          <li><%= link_to(image_tag("US.png", width: "32", alt: "Switch to English"), locale: "en") %></li>
-          <li><%= link_to(image_tag("MX.png", width: "32", alt: "Cambiar a Español"), locale: "es-MX") %></li>
-          <li class="divider hide-for-small"></li>
-
           <% if user_signed_in? %>
+            <li><a><%= Time.now.strftime("%Y/%m/%d") %></a></li>
+            <li class="divider hide-for-small"></li>
+            <li><%= link_to(image_tag("US.png", width: "32", alt: "Switch to English"), locale: "en") %></li>
+            <li class="divider hide-for-small"></li>
+            <li><%= link_to(image_tag("MX.png", width: "32", alt: "Cambiar a Español"), locale: "es-MX") %></li>
+            <li class="divider hide-for-small"></li>
+
+
             <li class="has-dropdown"><a href="#"><%= current_user.first_name %></a>
               <ul class="dropdown">
                 <li><a href="/users/edit"><i class="social foundicon-torso"></i> <%= t "user.profile" %></a></li>

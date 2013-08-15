@@ -1,0 +1,6 @@
+- if current_user.email == "ricardo07@gmail.com"
+  .row#timenow
+    .small-12.columns
+      - offset = 604800
+      - Timecop.freeze(offset) if current_user.id == 1
+      %h1.text-center= Time.now.strftime("%a %b %d, %Y")

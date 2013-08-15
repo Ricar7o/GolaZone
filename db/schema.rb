@@ -104,11 +104,11 @@ ActiveRecord::Schema.define(:version => 20130714004659) do
   create_table "rankings", :force => true do |t|
     t.integer  "competition_id"
     t.integer  "week_id"
-    t.integer  "position"
-    t.integer  "score"
-    t.integer  "total"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "position",       :default => 1
+    t.integer  "score",          :default => 0
+    t.integer  "total",          :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "teams", :force => true do |t|

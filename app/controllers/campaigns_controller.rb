@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
 
+  before_filter :authenticate_user!,    :only => [:new, :create, :destroy]
+
   def new
     @campaign = Campaign.new
     @tournaments = Tournament.open
@@ -20,8 +22,12 @@ class CampaignsController < ApplicationController
     @next_week = @campaign.tournament.weeks.where(week_number: @tournament.next_week).first
     @current_week = @campaign.tournament.weeks.where(week_number: @tournament.current_week).first
     @user_competing = !@campaign.competitions.where(user_id: current_user).blank?
+    @user_invited = !@campaign.invitations.where(to_email: current_user.email).blank? if user_signed_in?
+
+    redirect_to root_path, alert: "You are not authorized to see this campaign" unless @campaign && (@user_competing || @user_invited || @campaign.published)
+
     @picks = current_user.competitions.where(campaign_id: @campaign.id).first.picks if @user_competing
-    @invitation = @campaign.invitations.build(user_id: current_user.id)
+    @invitation = @campaign.invitations.build(user_id: current_user.id) if user_signed_in?
     unless @campaign.all_rankings_generated?(@tournament.current_week) && Time.now > @current_week.latest_match
       @campaign.generate_rankings(@tournament.current_week)
     end
