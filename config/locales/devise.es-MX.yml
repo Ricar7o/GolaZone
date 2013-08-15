@@ -7,6 +7,8 @@ es-MX:
       send_instructions: "Recibirá un correo electrónico con instrucciones sobre cómo reiniciar su contraseña en unos minutos."
       send_paranoid_instructions: "Si su correo electrónico existe en nuestra base de datos, usted recibirá un enlace para reiniciar su contraseña en unos minutos."
       are_you_sure: "¿Está seguro?"
+      didnt_receive_unlock: "¿No recibió instrucciones de desbloqueo?"
+      didnt_receive_confirmation: "¿No recibió instrucciones de confirmación?"
     failure:
       already_authenticated: "Ya está dentro del sistema."
       inactive: "Su cuenta aún no ha sido activada."

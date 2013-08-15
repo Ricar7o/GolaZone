@@ -28,10 +28,10 @@ class CampaignsController < ApplicationController
 
     @picks = current_user.competitions.where(campaign_id: @campaign.id).first.picks if @user_competing
     @invitation = @campaign.invitations.build(user_id: current_user.id) if user_signed_in?
-    unless @campaign.all_rankings_generated?(@tournament.current_week) && Time.now > @current_week.latest_match
+    unless @campaign.all_rankings_generated?(@tournament.current_week) #&& Time.now > @current_week.latest_match
       @campaign.generate_rankings(@tournament.current_week)
     end
-    @rankings = Ranking.where(competition_id: @campaign.competitions)#.order("score DESC")
+    @rankings = Ranking.where(competition_id: @campaign.competitions, week_id: Week.find(@current_week))#.order("score DESC")
   end
 
 end
