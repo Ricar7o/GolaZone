@@ -58,7 +58,7 @@ GolaZone::Application.configure do
     :user_name            => ENV["GMAIL_ACCOUNT"],
     :password             => ENV["GMAIL_PASS"],
     :authentication       => :plain,
-    :domain               => 'heroku.com',
+    :domain               => 'golazone.herokuapp.com',
     :enable_starttls_auto => true
   }
 
