@@ -71,6 +71,30 @@ end
 puts "Added weeks"
 
 # ======== Matches ==============
+premier.weeks.find_by_week_number(34).matches.create(home_team: westham, away_team: wigan, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: westham.home_field, final_result: "H", home_score: 2, away_score: 0)
+premier.weeks.find_by_week_number(34).matches.create(home_team: westbrom, away_team: newcastle, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: westbrom.home_field, final_result: "D", home_score: 1, away_score: 1)
+premier.weeks.find_by_week_number(34).matches.create(home_team: swansea, away_team: sotton, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: swansea.home_field, final_result: "D", home_score: 0, away_score: 0)
+premier.weeks.find_by_week_number(34).matches.create(home_team: sunderland, away_team: everton, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: sunderland.home_field, final_result: "H", home_score: 1, away_score: 0)
+premier.weeks.find_by_week_number(34).matches.create(home_team: qpr, away_team: stoke, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: qpr.home_field, final_result: "A", home_score: 0, away_score: 2)
+premier.weeks.find_by_week_number(34).matches.create(home_team: norwich, away_team: reading, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: norwich.home_field, final_result: "H", home_score: 2, away_score: 1)
+premier.weeks.find_by_week_number(34).matches.create(home_team: fulham, away_team: arsenal, :match_time => Time.new(2013, 4, 20, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: fulham.home_field, final_result: "A", home_score: 0, away_score: 1)
+premier.weeks.find_by_week_number(34).matches.create(home_team: spurs, away_team: manc, :match_time => Time.new(2013, 4, 21, 13, 30, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: spurs.home_field, final_result: "H", home_score: 3, away_score: 1)
+premier.weeks.find_by_week_number(34).matches.create(home_team: liverpool, away_team: chelsea, :match_time => Time.new(2013, 4, 21, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: liverpool.home_field, final_result: "D", home_score: 2, away_score: 2)
+premier.weeks.find_by_week_number(34).matches.create(home_team: manu, away_team: astonvilla, :match_time => Time.new(2013, 4, 22, 20, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manu.home_field, final_result: "A", home_score: 3, away_score: 0)
+puts "Added Week 34"
+
+premier.weeks.find_by_week_number(35).matches.create(home_team: manc, away_team: westham, :match_time => Time.new(2013, 4, 27, 12, 45, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manc.home_field, final_result: "H", home_score: 2, away_score: 1)
+premier.weeks.find_by_week_number(35).matches.create(home_team: wigan, away_team: spurs, :match_time => Time.new(2013, 4, 27, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: wigan.home_field, final_result: "D", home_score: 2, away_score: 2)
+premier.weeks.find_by_week_number(35).matches.create(home_team: stoke, away_team: norwich, :match_time => Time.new(2013, 4, 27, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: stoke.home_field, final_result: "H", home_score: 1, away_score: 0)
+premier.weeks.find_by_week_number(35).matches.create(home_team: sotton, away_team: westbrom, :match_time => Time.new(2013, 4, 27, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: sotton.home_field, final_result: "A", home_score: 0, away_score: 3)
+premier.weeks.find_by_week_number(35).matches.create(home_team: everton, away_team: fulham, :match_time => Time.new(2013, 4, 27, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: everton.home_field, final_result: "H", home_score: 1, away_score: 0)
+premier.weeks.find_by_week_number(35).matches.create(home_team: newcastle, away_team: liverpool, :match_time => Time.new(2013, 4, 27, 17, 30, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: newcastle.home_field, final_result: "A", home_score: 0, away_score: 6)
+premier.weeks.find_by_week_number(35).matches.create(home_team: reading, away_team: qpr, :match_time => Time.new(2013, 4, 28, 13, 30, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: reading.home_field, final_result: "D", home_score: 0, away_score: 0)
+premier.weeks.find_by_week_number(35).matches.create(home_team: chelsea, away_team: swansea, :match_time => Time.new(2013, 4, 28, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: chelsea.home_field, final_result: "H", home_score: 2, away_score: 0)
+premier.weeks.find_by_week_number(35).matches.create(home_team: arsenal, away_team: manu, :match_time => Time.new(2013, 4, 28, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: arsenal.home_field, final_result: "D", home_score: 1, away_score: 1)
+premier.weeks.find_by_week_number(35).matches.create(home_team: astonvilla, away_team: sunderland, :match_time => Time.new(2013, 4, 29, 20, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: astonvilla.home_field, final_result: "H", home_score: 6, away_score: 1)
+puts "Added Week 35"
+
 premier.weeks.find_by_week_number(36).matches.create(home_team: westbrom, away_team: wigan, :match_time => Time.new(2013, 5, 4, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: westbrom.home_field, final_result: "A", home_score: 2, away_score: 3)
 premier.weeks.find_by_week_number(36).matches.create(home_team: westham, away_team: newcastle, :match_time => Time.new(2013, 5, 4, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: westham.home_field, final_result: "D", home_score: 0, away_score: 0)
 premier.weeks.find_by_week_number(36).matches.create(home_team: swansea, away_team: manc, :match_time => Time.new(2013, 5, 4, 15, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: swansea.home_field, final_result: "D", home_score: 0, away_score: 0)
@@ -81,7 +105,6 @@ premier.weeks.find_by_week_number(36).matches.create(home_team: qpr, away_team: 
 premier.weeks.find_by_week_number(36).matches.create(home_team: liverpool, away_team: everton, :match_time => Time.new(2013, 5, 5, 13, 30, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: liverpool.home_field, final_result: "D", home_score: 0, away_score: 0)
 premier.weeks.find_by_week_number(36).matches.create(home_team: manu, away_team: chelsea, :match_time => Time.new(2013, 5, 5, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manu.home_field, final_result: "A", home_score: 0, away_score: 1)
 premier.weeks.find_by_week_number(36).matches.create(home_team: sunderland, away_team: stoke, :match_time => Time.new(2013, 5, 6, 20, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: sunderland.home_field, final_result: "D", home_score: 1, away_score: 1)
-
 puts "Added Week 36"
 
 premier.weeks.find_by_week_number(37).matches.create(home_team: astonvilla, away_team: chelsea, :match_time => Time.new(2013, 5, 11, 12, 45, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: astonvilla.home_field)
@@ -94,7 +117,6 @@ premier.weeks.find_by_week_number(37).matches.create(home_team: everton, away_te
 premier.weeks.find_by_week_number(37).matches.create(home_team: manu, away_team: swansea, match_time: Time.new(2013,5,12, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manu.home_field)
 premier.weeks.find_by_week_number(37).matches.create(home_team: arsenal, away_team: wigan, match_time: Time.new(2013,5,14, 19, 45, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: arsenal.home_field)
 premier.weeks.find_by_week_number(37).matches.create(home_team: reading, away_team: manc, match_time: Time.new(2013,5,14, 20, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: reading.home_field)
-
 puts "Added Week 37"
 
 premier.weeks.find_by_week_number(38).matches.create(home_team: wigan, away_team: astonvilla, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: wigan.home_field)
@@ -107,7 +129,6 @@ premier.weeks.find_by_week_number(38).matches.create(home_team: newcastle, away_
 premier.weeks.find_by_week_number(38).matches.create(home_team: manc, away_team: norwich, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: manc.home_field)
 premier.weeks.find_by_week_number(38).matches.create(home_team: liverpool, away_team: qpr, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: liverpool.home_field)
 premier.weeks.find_by_week_number(38).matches.create(home_team: chelsea, away_team: everton, match_time: Time.new(2013,5,19, 16, 0, 0, "+00:00"), leg: 0, home_odds: 0.0, draw_odds: 0.0, away_odds: 0.0, venue: chelsea.home_field)
-
 puts "Added Week 38"
 
 
