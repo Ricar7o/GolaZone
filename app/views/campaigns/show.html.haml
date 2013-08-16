@@ -4,8 +4,14 @@
     %h1= @campaign.name
     %hr
 
-
+.row
   .small-12.large-3.columns
+    - if @next_week == 0
+      .row
+        %h3.subheader.text-center= t("campaigns.winner")
+        %h1.text-center#winner= @rankings.order("total DESC").first.competition.user.first_name
+        %hr
+
     .row#competitors
       = render partial: "competitions/index"
 
@@ -23,14 +29,16 @@
         %h6.text-center= t("campaigns.rankings.standings")
         = render 'rankings/leaderboard', rankings: @rankings, type: "total"
 
-  .small-12.large-6.pull-3.columns
-    %h2.text-center= t("campaigns.next_matchday")
-    = render partial: "weeks/show_week", locals: { week: @next_week, show_results: false, allow_picks: @user_competing }
+  - unless @next_week == 0
+    .small-12.large-6.pull-3.columns
+      %h2.text-center= t("campaigns.next_matchday")
+      = render partial: "weeks/show_week", locals: { week: @next_week, show_results: false, allow_picks: @user_competing }
 
-.row
-  .small-12.large-6.large-centered.columns
-    %hr
+
+  .small-12.large-6.pull-3.columns
+    %h2.subheader.text-center= t("campaigns.tournament_ended") if @next_week == 0
     %h2.text-center= t("campaigns.last_matchday")
     = render "weeks/show_week", week: @current_week, show_results: true, allow_picks: false
+
 %br.hide-for-small
 %br.hide-for-small

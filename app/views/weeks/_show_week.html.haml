@@ -1,7 +1,5 @@
 / Week view
-- if week == 0
-  %h3.subheader.text-center= t("campaigns.tournament_ended")
-- else
+- unless week == 0
   .row
     .small-12.columns
       %h4.text-center

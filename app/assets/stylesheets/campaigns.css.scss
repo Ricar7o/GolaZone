@@ -17,6 +17,10 @@
   visibility: hidden;
 }
 
+#winner {
+  color: $success-color;
+}
+
 input.valid {
   border: 1px solid $success-color;
   -webkit-box-shadow: 0 0 5px $success-color;

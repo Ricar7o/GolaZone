@@ -32,6 +32,7 @@ es-MX:
     make_predictions: "Haz tus predicciones"
     pending_invitations: "Invitaciones pendientes"
     tournament_ended: "El torneo ha concluido"
+    winner: "Campeón"
     competitions:
         in_this_campaign: "En esta campaña"
         collapse: "Esconder"
