@@ -7,6 +7,10 @@ class CampaignsController < ApplicationController
     @tournaments = Tournament.open
   end
 
+  def index
+    redirect_to new_campaign_path
+  end
+
   def create
     @campaign = current_user.campaigns.new(params[:campaign])
     @campaign.draw_points = -1 if params[:campaign][:allow_draw] == "No"

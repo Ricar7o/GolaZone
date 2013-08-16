@@ -13,6 +13,9 @@ es-MX:
       title: "Noticias"
     sports:
       title: "Deportes"
+  tagline:
+    title: "Bienvenido a GolaZone"
+    subtitle: "Fútbol en tus manos."
   alerts:
     signin: "Por favor ingrese a su cuenta o registre una nueva."
   user:

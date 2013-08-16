@@ -1,11 +1,17 @@
 / Index (pages) view
--if current_user.present?
-  .row#pending_invitations
-    .small-9.large-3.push-9.columns
-      - unless @invitations.blank?
-        = render partial: "invitations/pending"
+.row
+  .small-12.large-3.push-9.columns
+    -if current_user.present?
+      .row#pending_invitations
+        .small-12.columns
+          - unless @invitations.blank?
+            = render partial: "invitations/pending"
 
-  .row#competitions_list
-    .small-9.large-3.push-9.columns
-      - unless @competitions.blank?
-        = render partial: "competitions/list"
+      .row#competitions_list
+        .small-12.columns
+          - unless @competitions.blank?
+            = render partial: "competitions/list"
+
+  .tagline.small-12.large-9.pull-3.columns
+    %h1= t("tagline.title")
+    %h2= t("tagline.subtitle")

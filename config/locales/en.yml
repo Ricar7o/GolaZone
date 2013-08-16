@@ -13,6 +13,9 @@ en:
       title: "News"
     sports:
       title: Sports
+  tagline:
+    title: "Welcome to GolaZone"
+    subtitle: "Fantasy soccer made easy."
   alerts:
     signin: "Please sign in or create an account."
   user:
