@@ -1,37 +1,40 @@
 / Week view
-.row
-  .small-12.columns
-    %h4.text-center
-      = t("campaigns.week") + " #" + week.week_number.to_s
-      - if allow_picks
-        %span.label.radius=t("campaigns.make_predictions")
-    %h6.subheader.text-center= week.earliest_match.strftime("%a %b %d, %Y") + " - " + week.latest_match.strftime("%a %b %d, %Y")
+- if week == 0
+  %h3.subheader.text-center= t("campaigns.tournament_ended")
+- else
+  .row
+    .small-12.columns
+      %h4.text-center
+        = t("campaigns.week") + " #" + week.week_number.to_s
+        - if allow_picks
+          %span.label.radius=t("campaigns.make_predictions")
+      %h6.subheader.text-center= week.earliest_match.strftime("%a %b %d, %Y") + " - " + week.latest_match.strftime("%a %b %d, %Y")
 
-  .small-12.columns
-    %table{width: "100%"}
-      %thead
-        %tr
-          %th.text-center.team_picker= t("matches.home")
-          - if show_results
-            %th.text-center.draw_picker= t("matches.score")
-          - else
-            %th.text-center.draw_picker= t("matches.draw")
-          %th.text-center.team_picker= t("matches.away")
-      %tbody
-        - week.matches.includes(:home_team, :away_team).order(:match_time).each do |match|
-          - home_tm = match.home_team
-          - away_tm = match.away_team
-          %tr{id: match.id}
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{picked_result?(@picks, match.id, "H") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "H", id: "#{match.id}H"}
-              = image_tag home_tm.logo, width: "50em"
-              %br
-              %span= home_tm.name
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{ show_results ? 'score_box' : ''} #{picked_result?(@picks, match.id, "D") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "D", id: "#{match.id}D"}
-              - if show_results
-                = match.home_score.to_s + "-" + match.away_score.to_s
-              - else
-                %span= "vs."
-            %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{picked_result?(@picks, match.id, "A") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "A", id: "#{match.id}A"}
-              = image_tag away_tm.logo, width: "50em"
-              %br
-              %span= away_tm.name
+    .small-12.columns
+      %table{width: "100%"}
+        %thead
+          %tr
+            %th.text-center.team_picker= t("matches.home")
+            - if show_results
+              %th.text-center.draw_picker= t("matches.score")
+            - else
+              %th.text-center.draw_picker= t("matches.draw")
+            %th.text-center.team_picker= t("matches.away")
+        %tbody
+          - week.matches.includes(:home_team, :away_team).order(:match_time).each do |match|
+            - home_tm = match.home_team
+            - away_tm = match.away_team
+            %tr{id: match.id}
+              %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{picked_result?(@picks, match.id, "H") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "H", id: "#{match.id}H"}
+                = image_tag home_tm.logo, width: "50em"
+                %br
+                %span= home_tm.name
+              %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{ show_results ? 'score_box' : ''} #{picked_result?(@picks, match.id, "D") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "D", id: "#{match.id}D"}
+                - if show_results
+                  = match.home_score.to_s + "-" + match.away_score.to_s
+                - else
+                  %span= "vs."
+              %td.text-center{ class: "#{allow_picks ? 'pickable' : ''} #{picked_result?(@picks, match.id, "A") ? 'picked_match' : ''}", :"data-match-id" => match.id, :"data-result" => "A", id: "#{match.id}A"}
+                = image_tag away_tm.logo, width: "50em"
+                %br
+                %span= away_tm.name

@@ -21,7 +21,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body class="<%= params[:controller] + ' ' + params[:action] %>">
 
     <nav class="top-bar">
       <ul class="title-area">
@@ -67,11 +67,11 @@
           <li class="divider hide-for-small"></li>
           <% if user_signed_in? %>
             <li><a><%= Time.now.strftime("%Y/%m/%d") %></a></li>
-            <li class="divider hide-for-small"></li>
-            <li><%= link_to(image_tag("US.png", width: "32", alt: "Switch to English"), locale: "en") %></li>
-            <li class="divider hide-for-small"></li>
-            <li><%= link_to(image_tag("MX.png", width: "32", alt: "Cambiar a Español"), locale: "es-MX") %></li>
-            <li class="divider hide-for-small"></li>
+            <li class="divider"></li>
+            <li><%= link_to("English", locale: "en") %></li>
+            <li class="divider"></li>
+            <li><%= link_to("Español", locale: "es-MX") %></li>
+            <li class="divider"></li>
 
 
             <li class="has-dropdown"><a href="#"><%= current_user.first_name %></a>
@@ -106,6 +106,17 @@
 
     <%= yield %>
 
+    <footer class="hide-for-small">
+      <!-- <div class="row"> -->
+        <div class="small-12 large-12 large-centered">
+          <p class="text-center">GolaZone &copy; <%= Time.now.year %> - Ricardo Cervantes | Matt Tschoegl
+            <span>
+              Photo by ShutterRunner
+            </span>
+          </p>
+        </div>
+      <!-- </div> -->
+    </footer>
 
     <%= javascript_include_tag "application" %>
   </body>

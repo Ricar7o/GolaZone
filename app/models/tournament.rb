@@ -28,6 +28,7 @@ class Tournament < ActiveRecord::Base
   # Returns the integer number of weeks left
   def weeks_left
     weeks.each do |week|
+      return 0 if number_of_weeks == week.week_number
       return number_of_weeks - week.week_number + 1 if week.latest_match > Time.now
     end
   end

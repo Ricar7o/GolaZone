@@ -14,7 +14,8 @@
  *= require_tree .
  */
 
- @import 'foundation-icons';
+@import 'foundation-icons';
+@import "foundation/components/global";
 
 body {
   padding-top: 60px;
@@ -22,4 +23,38 @@ body {
 
 label.checkbox {
   margin-bottom: 10px;
+}
+
+.top-bar-section ul li{
+  a {
+    &:hover { background-color: darken($primary-color, 20%); }
+  }
+
+  ul.dropdown a {
+    &:hover {
+      background-color: #212121;
+      color: $primary-color;
+    }
+  }
+
+}
+
+footer {
+  background-color: #111;
+  color: darken($primary-color, 20%);
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+
+  p {
+    padding: 0.5em;
+    margin: 0;
+  }
+
+  span {
+    color: lighten(#111, 10%);
+    position: fixed;
+    right: 1em;
+    font-size: 0.5em;
+  }
 }

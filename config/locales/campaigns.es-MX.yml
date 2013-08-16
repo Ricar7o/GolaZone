@@ -31,6 +31,7 @@ es-MX:
     current_matchday: "Jornada actual"
     make_predictions: "Haz tus predicciones"
     pending_invitations: "Invitaciones pendientes"
+    tournament_ended: "El torneo ha concluido"
     competitions:
         in_this_campaign: "En esta campaña"
         collapse: "Esconder"

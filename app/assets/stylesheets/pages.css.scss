@@ -11,3 +11,28 @@
 .foundicon-remove {
   color: $alert-color;
 }
+
+body.pages.index {
+  background:url("/assets/Football_field_1621x1080.jpg") center center fixed;
+  // background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#competitions_list div:nth-child(1),
+#pending_invitations div:nth-child(1) {
+  background-color: rgba(255,255,255,.9);
+  box-shadow: 0 0 20px darken($secondary-color, 60%);
+  ul {
+    padding-top: 1em;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #competitions_list div:nth-child(1),
+  #pending_invitations div:nth-child(1) {
+  float: right;
+  }
+}

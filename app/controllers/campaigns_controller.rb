@@ -20,6 +20,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     @tournament = @campaign.tournament
     @next_week = @campaign.tournament.weeks.where(week_number: @tournament.next_week).first
+    @next_week = 0 if @next_week.blank?
     @current_week = @campaign.tournament.weeks.where(week_number: @tournament.current_week).first
     @user_competing = !@campaign.competitions.where(user_id: current_user).blank?
     @user_invited = !@campaign.invitations.where(to_email: current_user.email).blank? if user_signed_in?

@@ -31,6 +31,7 @@ en:
     current_matchday: "Current matchday"
     make_predictions: "Make your picks"
     pending_invitations: "Pending invitations"
+    tournament_ended: "Tournament has ended"
     competitions:
         in_this_campaign: "In this campaign"
         collapse: "Collapse"
