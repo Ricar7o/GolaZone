@@ -1,11 +1,5 @@
 / Index (pages) view
--if !current_user.present?
-  .row
-    .small-12.large-6.large-centered.columns.text-center
-      .alert-box.radius{:'data-alert' => ''}
-        = t("alerts.signin")
-        %a{href: "#", class: "close"} &times;
-- else
+-if current_user.present?
   .row#pending_invitations
     .small-9.large-3.push-9.columns
       - unless @invitations.blank?

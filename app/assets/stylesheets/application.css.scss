@@ -8,18 +8,16 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
-//= require foundation_and_overrides
  *= require foundation_and_overrides
  *= require_self
  *= require_tree .
  */
 
 @import 'foundation-icons';
-@import "foundation/components/global";
+@import 'variables';
 
 body {
-  padding-top: 60px;
-  // background: url("/assets/subtlenet2.png") !important;
+  background-image: url("/assets/subtlenet2.png");
 }
 
 label.checkbox {

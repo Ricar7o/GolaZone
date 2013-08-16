@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "foundation/components/global";
+@import 'variables';
 
 .foundicon-checkmark {
   color: $success-color;
@@ -13,7 +13,8 @@
 }
 
 body.pages.index {
-  background:url("/assets/Football_field_1621x1080.jpg") center center fixed !important;
+  // Small Background image - See Media queries for larger screens
+  background: url("/assets/Football_field_960x640.jpg") no-repeat center center fixed;
   // background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -34,5 +35,17 @@ body.pages.index {
   #competitions_list div:nth-child(1),
   #pending_invitations div:nth-child(1) {
   float: right;
+  }
+}
+
+@media only screen and (min-width: 961px) {
+  body.pages.index {
+    background-image: url("/assets/Football_field_1280x852.jpg");
+  }
+}
+
+@media only screen and (min-width: 1281px) {
+  body.pages.index {
+    background-image: url("/assets/Football_field_1621x1080.jpg");
   }
 }

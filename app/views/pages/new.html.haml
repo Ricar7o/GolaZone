@@ -4,3 +4,5 @@
       - offset = 604800
       - Timecop.freeze(offset) if current_user.id == 1
       %h1.text-center= Time.now.strftime("%a %b %d, %Y")
+      - if Time.now > Time.local(2013,5,19)
+        - `cd #{Rails.root}; bundle exec rake results:find`
