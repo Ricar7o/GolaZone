@@ -12,5 +12,5 @@ As of now, the site is translated 100% in English and Spanish, depending on user
 
 We are still working on features of the app. It will be ready to start using soon. If you'd like to collaborate please contact the development team below:
 
-*Ricardo Cervantes: ricardo07@gmail.com
-*Matthew Tschoegl: matt.tschoegl@gmail.com
+- Ricardo Cervantes: ricardo07@gmail.com
+- Matthew Tschoegl: matt.tschoegl@gmail.com
